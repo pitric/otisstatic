@@ -1,0 +1,64 @@
+{
+  "search": {
+    "title1": "Search",
+    "caption1": "Piece Criteria",
+    "text1": "To find a piece, simply enter the criteria of the piece you want to find and then select the upload icon. If there is a match, Pitric AI will list the top matches and this dialog box will close automatically.",
+    "text2": "You can then select the piece you want, and Pitric AI will insert the piece in the document at the location of the cursor, or you can delete it. If Pitric AI does not list the piece you are looking for, modify the search criteria.",
+    "text3": "You can also close the dialog box by selecting the dismiss icon. When you do this, Pitric AI will not search for any pieces.",
+    "text4": "",
+    "text5": ""
+  },
+  "add": {
+    "title1": "Add",
+    "caption1": "Piece Tags",
+    "label1": "Private",
+    "label2": "Public",
+    "text1": "To add a piece, simply select the part of the document that will become the piece and then select the upload icon. You can make the piece private—where only you can access it—or public—where the entire organization can access it.",
+    "text2": "To search for the piece later, you can add tags. Pitric AI does not require tags, but tags will narrow the top matches when you search. You separate tags with |. If your piece is a table related to a project named Project Buster, the tags: Project Buster | table will help in finding it.",
+    "text3": "You can also close the dialog box by selecting the dismiss icon. When you do this, Pitric AI will not add the piece."
+  },
+
+  "settings": {
+    "title1": "Settings",
+    "label1": "Verbose",
+    "label2": "Concise",
+    "label3": "Instructions",
+    "label4": "No Instructions",
+    "text1": "To change the settings, simply slide the verbose or instructions switch and then select the upload icon to set them as your defaults. You can make the search results verbose—where Pitric AI shows more detailed search results—or concise—where it shows fewer details. You can also show or hide the instructions.",
+    "text2": "You can also close the dialog box by selecting the dismiss icon. When you do this, Pitric AI will not set them as your defaults.",
+    "text3": "For more information, go to pitric.com. If you have any questions, contact Pitric at pieces@pitric.com."
+  },
+  "text": {
+    "title1": "Text",
+    "label1": "Small",
+    "label2": "Medium",
+    "label3": "Large",
+    "text1": "To change the size of the text, simply select the size and then select the upload icon to set it as your default text size. There are three sizes to choose from: Small, Medium, and Large.",
+    "text2": "You can also close the dialog box by selecting the dismiss icon. When you do this, Pitric AI will not set it as your default text size."
+  },
+
+  "theme": {
+    "title1": "Theme",
+    "caption1": "Note: To set a Hight Contrast Theme, set the accessibility option in your device.",
+    "label1": "Light",
+    "label2": "Dark",
+    "text1": "To change the theme, simply slide the switch and then select the upload icon to set it as your default theme. You can make the theme light or dark. If the screen is set in contrast theme, Pitric AI inherits it and overrides the light or dark theme.",
+    "text2": "To set a contrast theme in Windows 11, you select the Start button and then select Settings > Accessibility > Contrast themes. In Windows 10, you select the Start button and then select Settings > Ease of Access > Display. On a Mac, you choose the Apple menu and then select Systems Settings >  Accessibility > Display.",
+    "text3": "You can also close the dialog box by selecting the dismiss icon. When you do this, Pitric AI will not set it as your default theme."
+  },
+  "language": {
+    "title1": "Language",
+    "label1": "English",
+    "label2": "Español",
+    "text1": "To change the language, simply slide the switch and then select the upload icon.to set it as your default language. There are two languages to choose from: English, and Spanish.",
+    "text2": "You can also close the dialog box by selecting the dismiss icon. When you do this, Pitric AI will not set it as your language."
+  },
+
+  "L": {
+    "title1": "Search",
+    "label1": "Piece Criteria",
+    "label2": "Piece Criteria",
+    "text1": "",
+    "text2": ""
+  }
+}

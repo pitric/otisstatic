@@ -10,13 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@fluentui/react-components": "^9.49.0",
-    "@types/office-js": "^1.0.385",
+    "@fluentui/react-components": "^9.49.2",
+    "@types/office-js": "^1.0.386",
     "@types/office-runtime": "^1.0.35",
     "@types/react-i18next": "^8.1.0",
     "@vitejs/plugin-basic-ssl": "^1.1.0",
     "axios": "^1.6.8",
-    "i18next": "^23.11.2",
+    "i18next": "^23.11.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-i18next": "^14.1.1"
@@ -24,14 +24,14 @@
   "devDependencies": {
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.0",
-    "@typescript-eslint/eslint-plugin": "^7.7.1",
-    "@typescript-eslint/parser": "^7.7.1",
+    "@typescript-eslint/eslint-plugin": "^7.8.0",
+    "@typescript-eslint/parser": "^7.8.0",
     "@vitejs/plugin-react-swc": "^3.6.0",
-    "eslint": "^9.1.1",
+    "eslint": "^9.2.0",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.6",
     "typescript": "^5.4.5",
-    "vite": "^5.2.10"
+    "vite": "^5.2.11"
   },
   "packageManager": "yarn@4.1.1"
 }

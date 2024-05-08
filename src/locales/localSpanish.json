@@ -1,0 +1,55 @@
+{
+  "search": {
+    "title1": "Buscar",
+    "caption1": "Criterios de Pieza",
+    "text1": "Para encontrar una pieza, simplemente ingrese los criterios de la pieza que desea encontrar y luego seleccione el icono de carga. Si hay una coincidencia, Pitric AI enumerará las mejores coincidencias y este cuadro de diálogo se cerrará automáticamente.",
+    "text2": "A continuación, puede seleccionar la pieza que desee, y Pitric AI insertará la pieza en el documento en la ubicación del cursor, o puede eliminarla. Si Pitric AI no enumera la pieza que está buscando, modifique los criterios de búsqueda.",
+    "text3": "También puede cerrar el cuadro de diálogo seleccionando el icono de descarte. Cuando hagas esto, Pitric AI no buscará ninguna pieza.",
+    "text4": "",
+    "text5": ""
+  },
+  "add": {
+    "title1": "Añadir",
+    "caption1": "Etiquetas de Piezas",
+    "label1": "Privado",
+    "label2": "Público",
+    "text1": "Para agregar una pieza, simplemente seleccione la parte del documento que se convertirá en la pieza y luego seleccione el icono de carga. Puedes hacer que la pieza sea privada, donde solo tú puedas acceder a ella, o pública, donde toda la organización pueda acceder a ella.",
+    "text2": "Para buscar la pieza más tarde, puedes añadir etiquetas. Pitric AI no requiere etiquetas, pero las etiquetas reducirán las principales coincidencias cuando busques. Las etiquetas se separan con |. Si tu pieza es una mesa relacionada con un proyecto llamado Project Buster, las etiquetas: Project Buster | La tabla ayudará a encontrarlo.",
+    "text3": "También puede cerrar el cuadro de diálogo seleccionando el icono de descarte. Cuando haces esto, Pitric AI no agregará la pieza."
+
+  },
+  "settings": {
+    "title1": "Ajustes",
+    "label1": "Detallado",
+    "label2": "Conciso",
+    "label3": "Instrucciones",
+    "label4": "Sin Instrucciones",
+    "text1": "Para cambiar la configuración, simplemente deslice el interruptor detallado o de instrucciones y luego seleccione el icono de carga para establecerlos como predeterminados. Puede hacer que los resultados de búsqueda sean detallados, donde Pitric AI muestra resultados de búsqueda más detallados, o concisos, donde muestra menos detalles. También puede mostrar u ocultar las instrucciones.",
+    "text2": "También puede cerrar el cuadro de diálogo seleccionando el icono de descarte. Cuando hagas esto, Pitric AI no los establecerá como predeterminados.",
+    "text3": "Para obtener más información, vaya a pitric.com. Si tiene alguna pregunta, póngase en contacto con Pitric en pieces@pitric.com."
+  },
+  "text": {
+    "title1": "Texto",
+    "label1": "Pequeño",
+    "label2": "Medio",
+    "label3": "Grande",
+    "text1": "Para cambiar el tamaño del texto, simplemente seleccione el tamaño y luego seleccione el icono de carga para establecerlo como su tamaño de texto predeterminado. Hay tres tamaños para elegir: pequeño, mediano y grande.",
+    "text2": "También puede cerrar el cuadro de diálogo seleccionando el icono de descarte. Al hacer esto, Pitric AI no lo establecerá como su tamaño de texto predeterminado."
+  },
+  "theme": {
+    "title1": "Tema",
+    "caption1": "Nota: Para establecer un tema de contraste alto, configure la opción de accesibilidad en su dispositivo.",
+    "label1": "Luz",
+    "label2": "Oscuro",
+    "text1": "Para cambiar el tema, simplemente deslice el interruptor y luego seleccione el icono de carga para configurarlo como su tema predeterminado. Puedes hacer que el tema sea claro u oscuro. Si la pantalla está configurada en un tema de contraste, Pitric AI lo hereda y anula el tema claro u oscuro.",
+    "text2": "Para establecer un tema de contraste en Windows 11, seleccione el botón Inicio y, a continuación, seleccione Configuración > Accesibilidad > Temas de contraste. En Windows 10, seleccione el botón Inicio y, a continuación, seleccione Configuración > Accesibilidad > pantalla. En una Mac, elige el menú Apple y luego selecciona Configuración del sistema > Accesibilidad > pantalla.",
+    "text3": "También puede cerrar el cuadro de diálogo seleccionando el icono de descarte. Cuando hagas esto, Pitric AI no lo establecerá como tu tema predeterminado."
+  },
+  "language": {
+    "title1": "Idioma",
+    "label1": "English",
+    "label2": "Español",
+    "text1": "Para cambiar el idioma, simplemente deslice el interruptor y luego seleccione la carga icon.to configúrela como su idioma predeterminado. Hay dos idiomas para elegir: inglés y español.",
+    "text2": "También puede cerrar el cuadro de diálogo seleccionando el icono de descarte. Cuando haces esto, Pitric AI no lo establecerá como tu idioma."
+  }
+}
