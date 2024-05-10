@@ -2,6 +2,7 @@
   "search": {
     "title1": "Search",
     "caption1": "Piece Criteria",
+    "caption2": "Contact Criteria",
     "text1": "To find a piece, simply enter the criteria of the piece you want to find and then select the upload icon. If there is a match, Pitric AI will list the top matches and this dialog box will close automatically.",
     "text2": "You can then select the piece you want, and Pitric AI will insert the piece in the document at the location of the cursor, or you can delete it. If Pitric AI does not list the piece you are looking for, modify the search criteria.",
     "text3": "You can also close the dialog box by selecting the dismiss icon. When you do this, Pitric AI will not search for any pieces.",
@@ -11,11 +12,20 @@
   "add": {
     "title1": "Add",
     "caption1": "Piece Tags",
+    "caption2": "Contact Tags",
     "label1": "Private",
     "label2": "Public",
     "text1": "To add a piece, simply select the part of the document that will become the piece and then select the upload icon. You can make the piece private—where only you can access it—or public—where the entire organization can access it.",
     "text2": "To search for the piece later, you can add tags. Pitric AI does not require tags, but tags will narrow the top matches when you search. You separate tags with |. If your piece is a table related to a project named Project Buster, the tags: Project Buster | table will help in finding it.",
     "text3": "You can also close the dialog box by selecting the dismiss icon. When you do this, Pitric AI will not add the piece."
+  },
+  "send": {
+    "title1": "Send",
+    "label2": "Contacts"
+  },
+  "name": {
+    "title1": "Name",
+    "label2": "Contacts"
   },
 
   "settings": {
@@ -30,11 +40,12 @@
   },
   "text": {
     "title1": "Text",
-    "label1": "Small",
-    "label2": "Medium",
-    "label3": "Large",
-    "text1": "To change the size of the text, simply select the size and then select the upload icon to set it as your default text size. There are three sizes to choose from: Small, Medium, and Large.",
-    "text2": "You can also close the dialog box by selecting the dismiss icon. When you do this, Pitric AI will not set it as your default text size."
+    "label1": "Small Text",
+    "label2": "Medium Text",
+    "label3": "Large Text",
+    "text1": "To change the settings simply modify the settings and then select the upload icon to set your settings. Your new settings will become your default settings and the next time you open Pitric Pieces, they will be set.",
+    "text2": "In settings, you can change the size of the font, set the theme and the language. You can set the details of searches and whether instructions and tooltips are displayed. Note: To set a Hight Contrast Theme, set the accessibility option in your device.",
+    "text3": "You can also close the dialog box by selecting the dismiss icon. When you do this, Pitric Pieces will not save your settings as defaults."
   },
 
   "theme": {
@@ -52,6 +63,27 @@
     "label2": "Español",
     "text1": "To change the language, simply slide the switch and then select the upload icon.to set it as your default language. There are two languages to choose from: English, and Spanish.",
     "text2": "You can also close the dialog box by selecting the dismiss icon. When you do this, Pitric AI will not set it as your language."
+  },
+
+  "ribbon": {
+    "label1": "Pieces",
+    "label2": "Contacts"
+  },
+
+  "tip": {
+    "text1": "The swap icon toggles the ribbon contents between Pieces and Contacts.",
+    "text2": "The language switch toggles between English and Spanish.",
+    "text3": "The instructions switch toggles between instructions with tooltips and no instructions or tooltips.",
+    "text4": "The theme switch toggles between light and dark themes. To set a high contrast theme, set the accessibility option in your device.",
+    "text5": "The search results switch toggles between verbose and concise results when searching pieces.",
+    "text6": "The text radio buttons set the size of the text: small, medium, or large.",
+    "text7": "The upload icon sets your new settings as your defaults and closes the dialog box.",
+    "text8": "The dismiss icon closes the dialog box and does not set your new settings as your defaults.",
+    "text9": "",
+    "text10": "",
+    "text11": "",
+    "text12": "",
+    "text": ""
   },
 
   "L": {

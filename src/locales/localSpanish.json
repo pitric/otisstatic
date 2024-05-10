@@ -16,7 +16,6 @@
     "text1": "Para agregar una pieza, simplemente seleccione la parte del documento que se convertirá en la pieza y luego seleccione el icono de carga. Puedes hacer que la pieza sea privada, donde solo tú puedas acceder a ella, o pública, donde toda la organización pueda acceder a ella.",
     "text2": "Para buscar la pieza más tarde, puedes añadir etiquetas. Pitric AI no requiere etiquetas, pero las etiquetas reducirán las principales coincidencias cuando busques. Las etiquetas se separan con |. Si tu pieza es una mesa relacionada con un proyecto llamado Project Buster, las etiquetas: Project Buster | La tabla ayudará a encontrarlo.",
     "text3": "También puede cerrar el cuadro de diálogo seleccionando el icono de descarte. Cuando haces esto, Pitric AI no agregará la pieza."
-
   },
   "settings": {
     "title1": "Ajustes",
@@ -30,11 +29,12 @@
   },
   "text": {
     "title1": "Texto",
-    "label1": "Pequeño",
-    "label2": "Medio",
-    "label3": "Grande",
-    "text1": "Para cambiar el tamaño del texto, simplemente seleccione el tamaño y luego seleccione el icono de carga para establecerlo como su tamaño de texto predeterminado. Hay tres tamaños para elegir: pequeño, mediano y grande.",
-    "text2": "También puede cerrar el cuadro de diálogo seleccionando el icono de descarte. Al hacer esto, Pitric AI no lo establecerá como su tamaño de texto predeterminado."
+    "label1": "Texto Pequeño",
+    "label2": "Texto Medio",
+    "label3": "Texto Grande",
+    "text1": "Para cambiar la configuración, simplemente modifique la configuración y luego seleccione el icono de carga para establecer su configuración. Sus nuevos ajustes se convertirán en sus ajustes predeterminados y la próxima vez que abra Pitric Pieces, se establecerán.",
+    "text2": "En la configuración, puedes cambiar el tamaño de la fuente, configurar el tema y el idioma. Puede configurar los detalles de las búsquedas y si se muestran instrucciones e información sobre herramientas. Nota: Para configurar un tema de alto contraste, configure la opción de accesibilidad en su dispositivo.",
+    "text3": "También puede cerrar el cuadro de diálogo seleccionando el icono de descarte. Al hacer esto, Pitric Pieces no guardará su configuración como predeterminada."
   },
   "theme": {
     "title1": "Tema",
@@ -51,5 +51,19 @@
     "label2": "Español",
     "text1": "Para cambiar el idioma, simplemente deslice el interruptor y luego seleccione la carga icon.to configúrela como su idioma predeterminado. Hay dos idiomas para elegir: inglés y español.",
     "text2": "También puede cerrar el cuadro de diálogo seleccionando el icono de descarte. Cuando haces esto, Pitric AI no lo establecerá como tu idioma."
+  },
+  "ribbon": {
+    "label1": "Piezas",
+    "label2": "Contactos"
+  },
+  "tip": {
+    "text1": "El ícono de intercambio alterna el contenido de la cinta entre Piezas y Contactos.",
+    "text2": "El cambio de idioma alterna entre inglés y español.",
+    "text3": "El cambio de instrucciones alterna entre instrucciones con información sobre herramientas y sin instrucciones ni información sobre herramientas.",
+    "text4": "El cambio de tema alterna entre temas claros y oscuros. Para configurar un tema de alto contraste, configura la opción de accesibilidad en tu dispositivo.",
+    "text5": "Los resultados de la búsqueda alternan entre resultados detallados y concisos cuando se buscan piezas.",
+    "text6": "Los botones de opción de texto establecen el tamaño del texto: pequeño, mediano o grande.",
+    "text7": "El ícono de carga establece la nueva configuración como predeterminada y cierra el cuadro de diálogo.",
+    "text8": "El icono de descartar cierra el cuadro de diálogo y no establece la nueva configuración como predeterminada."
   }
 }
