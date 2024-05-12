@@ -13,6 +13,8 @@
     "title1": "Add",
     "caption1": "Piece Tags",
     "caption2": "Contact Tags",
+    "caption3": "Piece Name",
+    "caption4": "Contact Name",
     "label1": "Private",
     "label2": "Public",
     "text1": "To add a piece, simply select the part of the document that will become the piece and then select the upload icon. You can make the piece private—where only you can access it—or public—where the entire organization can access it.",
@@ -21,19 +23,27 @@
   },
   "send": {
     "title1": "Send",
-    "label2": "Contacts"
+    "label1": "Asending",
+    "label2": "Desending",
+    "label3": "Newest",
+    "label4": "Oldest"
   },
   "name": {
     "title1": "Name",
-    "label2": "Contacts"
+    "label2": "Contacts",
+    "caption1": "Account Name"
   },
 
   "settings": {
     "title1": "Settings",
-    "label1": "Verbose",
-    "label2": "Concise",
+    "label1": "Concise",
+    "label2": "Verbose",
     "label3": "Instructions",
     "label4": "No Instructions",
+    "label5": "Tooltips",
+    "label6": "No Tooltips",
+    "label7": "List",
+    "label8": "Insert",
     "text1": "To change the settings, simply slide the verbose or instructions switch and then select the upload icon to set them as your defaults. You can make the search results verbose—where Pitric AI shows more detailed search results—or concise—where it shows fewer details. You can also show or hide the instructions.",
     "text2": "You can also close the dialog box by selecting the dismiss icon. When you do this, Pitric AI will not set them as your defaults.",
     "text3": "For more information, go to pitric.com. If you have any questions, contact Pitric at pieces@pitric.com."

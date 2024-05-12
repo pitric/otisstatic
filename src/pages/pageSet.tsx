@@ -1,4 +1,4 @@
-import { Dialog, DialogBody, DialogContent, DialogSurface, DialogTitle, DialogTrigger, FluentProvider, Textarea, makeStyles, Text, tokens, Switch, BrandVariants, createLightTheme, shorthands, Divider, Radio, RadioGroup, createDarkTheme, Theme, Tooltip } from '@fluentui/react-components';
+import { Dialog, DialogBody, DialogContent, DialogSurface, DialogTitle, DialogTrigger, FluentProvider, Textarea, makeStyles, Text, tokens, Switch, BrandVariants, createLightTheme, shorthands, Divider, Radio, RadioGroup, createDarkTheme, Theme, Tooltip, Input, Accordion, AccordionHeader, AccordionItem, AccordionPanel, Toast, ToastTitle, useToastController, Toaster } from '@fluentui/react-components';
 import {
     SearchRegular,
     AddRegular,
@@ -14,6 +14,36 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 // type DrawerType = Required<DrawerProps>['type'];
+
+//   ----------------------------------------------------------------reducer...
+enum ActionType {
+    Instructions = 'instructions',
+    Tooltips = 'tooltips'
+}
+
+type AppState = {
+    instructions: boolean;
+    tooltips: boolean;
+};
+
+type Action =
+    | { type: ActionType.Instructions; payload: boolean }
+    | { type: ActionType.Tooltips; payload: boolean }
+
+const initialState: AppState = { instructions: true, tooltips: true };
+
+const reducer: React.Reducer<AppState, Action> = (state, action) => {
+    switch (action.type) {
+        case ActionType.Instructions:
+            return { ...state, instructions: action.payload };
+        case ActionType.Tooltips:
+            return { ...state, tooltips: action.payload };
+        default:
+            return { ...state };
+    }
+};
+
+//    ----------------------------------------------------------------
 
 const brandRamp: BrandVariants = {
     10: '#020206',
@@ -165,6 +195,16 @@ const useStyles = makeStyles({
         marginBottom: tokens.spacingVerticalXXS,
 
     },
+
+    inputadd: {
+        display: 'flex',
+        //  height: '7rem',
+        marginLeft: tokens.spacingHorizontalXS,
+        marginRight: tokens.spacingHorizontalXS,
+        marginTop: tokens.spacingVerticalXS,
+        marginBottom: tokens.spacingVerticalXXS,
+
+    },
     textareatop: {
         // margins: tokens.spacingHorizontalXXL,
     },
@@ -198,13 +238,19 @@ const useStyles = makeStyles({
         paddingTop: tokens.spacingHorizontalXS,
         paddingBottom: tokens.spacingHorizontalXS
     },
-    caption: {
+    captiontextarea: {
         marginRight: tokens.spacingHorizontalL,
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'flex-end'
     },
-
+    captioninput: {
+        marginRight: tokens.spacingHorizontalL,
+        marginBottom: tokens.spacingVerticalL,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-end'
+    },
     instructions: {
         marginTop: tokens.spacingVerticalS,
         display: 'flex',
@@ -225,6 +271,13 @@ const useStyles = makeStyles({
 
     },
 
+    name: {
+        marginLeft: tokens.spacingHorizontalXS,
+        marginRight: tokens.spacingHorizontalXS,
+        marginTop: tokens.spacingVerticalXS,
+        marginBottom: tokens.spacingVerticalXS,
+    },
+
 
 });
 
@@ -232,6 +285,8 @@ const useStyles = makeStyles({
 
 const PageSet = () => {
     const { t, i18n } = useTranslation();
+
+    const [state, dispatch] = React.useReducer(reducer, initialState);
 
     const [text200, setText200] = React.useState<300 | 100 | 200 | 400 | 500 | 600 | 700 | 800 | 900 | 1000 | undefined>(200);
     const [text300, setText300] = React.useState<300 | 100 | 200 | 400 | 500 | 600 | 700 | 800 | 900 | 1000 | undefined>(300);
@@ -254,15 +309,37 @@ const PageSet = () => {
     const onVerbose = React.useCallback((ev: { currentTarget: { checked: boolean | ((prevState: boolean) => boolean); }; }) => { setVerbose(ev.currentTarget.checked); }, [setVerbose]
     );
 
+    // const [verbose, setVerbose] = React.useState(true);
+    // const onVerbose = React.useCallback((ev: { currentTarget: { checked: boolean | ((prevState: boolean) => boolean); }; }) => { setVerbose(ev.currentTarget.checked); }, [setVerbose]);
+
+    // const verboseReducer = (state: boolean, action: boolean) => {
+    //     switch (action) {
+    //         case true:
+    //             return true;
+    //         case false:
+    //             return false;
+    //         default:
+    //             return state;
+    //     }
+    // };
+
+    // const [verboseState, verboseDispatch] = React.useReducer(verboseReducer, verbose);
+
+    const [insert, setInsert] = React.useState(true);
+    const onInsert = React.useCallback((ev: { currentTarget: { checked: boolean | ((prevState: boolean) => boolean); }; }) => { setInsert(ev.currentTarget.checked); }, [setInsert]
+    );
+    // const [tooltips, setTooltips] = React.useState(true);
+    // const onTooltip = React.useCallback((ev: { currentTarget: { checked: boolean | ((prevState: boolean) => boolean); }; }) => { setTooltips(ev.currentTarget.checked); }, [setTooltips]
+    // );
     const [theme, setTheme] = React.useState(true);
     const onTheme = React.useCallback((ev: { currentTarget: { checked: boolean | ((prevState: boolean) => boolean); }; }) => { setTheme(ev.currentTarget.checked); setStyle(ev.currentTarget.checked ? lightTheme : darkTheme) }, [setTheme]
     );
 
     const [style, setStyle] = React.useState<Theme>(lightTheme);
 
-    const [instructions, setInstructions] = React.useState(true);
-    const onInstructions = React.useCallback((ev: { currentTarget: { checked: boolean | ((prevState: boolean) => boolean); }; }) => { setInstructions(ev.currentTarget.checked); }, [setInstructions]
-    );
+    // const [instructions, setInstructions] = React.useState(true);
+    // const onInstructions = React.useCallback((ev: { currentTarget: { checked: boolean | ((prevState: boolean) => boolean); }; }) => { setInstructions(ev.currentTarget.checked); }, [setInstructions]
+    // );
 
 
     const [text, setText] = React.useState('medium');
@@ -297,14 +374,24 @@ const PageSet = () => {
 
     const switchInstructions = <Switch
         className={styles.switch}
-        checked={instructions}
-        onChange={onInstructions}
-        label={instructions ? t('settings.label3') : t('settings.label4')} />;
+        checked={state.instructions}
+        onChange={() => dispatch({ type: ActionType.Instructions, payload: !state.instructions })}
+        label={state.instructions ? t('settings.label3') : t('settings.label4')} />;
+    const switchTooltip = <Switch
+        className={styles.switch}
+        checked={state.tooltips}
+        onChange={() => dispatch({ type: ActionType.Tooltips, payload: !state.tooltips })}
+        label={state.tooltips ? t('settings.label5') : t('settings.label6')} />;
     const switchSearch = <Switch
         className={styles.switch}
         checked={verbose}
         onChange={onVerbose}
         label={verbose ? t('settings.label1') : t('settings.label2')} />;
+    const switchInsert = <Switch
+        className={styles.switch}
+        checked={insert}
+        onChange={onInsert}
+        label={insert ? t('settings.label7') : t('settings.label8')} />;
     const switchTheme = <Switch
         className={styles.switch}
         checked={theme}
@@ -326,13 +413,25 @@ const PageSet = () => {
     const settingsDismiss = <DialogTrigger disableButtonEnhancement action='close'>
         <DismissFilled className={styles.icon28} />
     </DialogTrigger>;
+
+    // const toasterId = useId('toaster');
+    const { dispatchToast } = useToastController('toaster');
+    const notify = () =>
+        dispatchToast(
+            <Toast>
+                <ToastTitle>Options configured in Toaster</ToastTitle>
+            </Toast>,
+            { intent: 'success' }
+        );
+
+
     return (
         <FluentProvider theme={style}>
             <div className={styles.page} >
 
                 <div className={styles.content} >
                     <div className={styles.ribbon}>
-                        {instructions ? <Tooltip
+                        {state.tooltips ? <Tooltip
                             content={t('tip.text1')}
                             relationship='description'
                             withArrow
@@ -382,9 +481,32 @@ const PageSet = () => {
                                             onChange={(_, data) => { setCriteria(data.value); }}
                                         />
 
-                                        <Text size={text200} className={styles.caption} >{t('search.caption1')}</Text>
+                                        <Text size={text200} className={styles.captiontextarea} >{t('search.caption1')}</Text>
 
-                                        {instructions && <div className={styles.instructions}>
+                                        <RadioGroup value={text} required>
+
+                                            <div className='styles.settings'>
+
+                                                <Radio value='small' label={t('send.label3')} />
+                                                <Radio value='medium' label={t('send.label4')} />
+                                            </div>
+                                            <div className='styles.settings'>
+
+                                                <Radio value='small' label={t('send.label1')} />
+                                                <Radio value='medium' label={t('send.label2')} />
+                                            </div>
+
+                                        </RadioGroup>
+
+
+
+                                        <div className='styles.settings'>
+
+                                            {switchSearch}
+                                            {switchInsert}
+
+                                        </div>
+                                        {state.instructions && <div className={styles.instructions}>
                                             <Divider appearance='brand' className={styles.dividertop} />
                                             <Text size={text300}>{t('search.text1')}</Text>
                                             <Text size={text300}>{t('search.text2')}</Text>
@@ -422,12 +544,8 @@ const PageSet = () => {
                                         <Text size={text500}>{t('add.title1')}</Text>
                                     </DialogTitle>
                                     <DialogContent className={styles.dialog}>
-                                        <Switch
-                                            className={styles.switch}
-                                            checked={access}
-                                            onChange={onAccess}
-                                            label={access ? t('add.label1') : t('add.label2')}
-                                        />
+                                        <Input appearance='outline' className={styles.inputadd} />
+                                        <Text size={text200} className={styles.captioninput} >{t('add.caption3')}</Text>
                                         <Textarea
                                             appearance='outline'
                                             size={area}
@@ -437,9 +555,16 @@ const PageSet = () => {
                                             onChange={(_, data) => { setTags(data.value); }}
                                         />
 
-                                        <Text size={text200} className={styles.caption} >{t('add.caption1')}</Text>
+                                        <Text size={text200} className={styles.captiontextarea} >{t('add.caption1')}</Text>
 
-                                        {instructions && <div className={styles.instructions}>
+                                        <Switch
+                                            className={styles.switch}
+                                            checked={access}
+                                            onChange={onAccess}
+                                            label={access ? t('add.label1') : t('add.label2')}
+                                        />
+
+                                        {state.instructions && <div className={styles.instructions}>
                                             <Divider appearance='brand' className={styles.dividertop} />
                                             {/* ignore no selected... */}
 
@@ -479,21 +604,24 @@ const PageSet = () => {
                                         <Text size={text500}>{t('send.title1')}</Text>
                                     </DialogTitle>
                                     <DialogContent className={styles.dialog}>
-                                        <Text size={text500}>pieces here???</Text>
-                                        <Text size={text500}>contacts here???</Text>
-                                        {/* <Switch
-                                            className={styles.switch}
-                                            checked={verbose}
-                                            onChange={onVerbose}
-                                            label={verbose ? t('settings.label1') : t('settings.label2')}
-                                        />
-                                        <Switch
-                                            className={styles.switch}
-                                            checked={instructions}
-                                            onChange={onInstructions}
-                                            label={instructions ? t('settings.label3') : t('settings.label4')}
-                                        /> */}
-                                        {instructions && <div className={styles.instructions}>
+
+
+                                        <Accordion multiple collapsible>
+                                            <AccordionItem value='1'>
+                                                <AccordionHeader size='large'>Pieces</AccordionHeader>
+                                                <AccordionPanel>
+                                                    <Text size={text300}>pieces here??? name only???</Text>
+                                                </AccordionPanel>
+                                            </AccordionItem>
+                                            <AccordionItem value='2'>
+                                                <AccordionHeader size='large'>Contacts</AccordionHeader>
+                                                <AccordionPanel>
+                                                    <Text size={text300}>contacts here?? name only???</Text>
+                                                </AccordionPanel>
+                                            </AccordionItem>
+
+                                        </Accordion>
+                                        {state.instructions && <div className={styles.instructions}>
                                             <Divider appearance='brand' className={styles.dividertop} />
                                             <Text size={text300}>{t('settings.text1')}</Text>
                                             <Text size={text300}>{t('settings.text2')}</Text>
@@ -513,7 +641,7 @@ const PageSet = () => {
                                 <DialogBody className={styles.root}>
                                     <DialogTitle className={styles.title}
                                         action={<>
-                                            {instructions ? <Tooltip
+                                            {state.tooltips ? <Tooltip
                                                 content={t('tip.text7')}
                                                 relationship='description'
                                                 withArrow
@@ -521,7 +649,7 @@ const PageSet = () => {
                                                 {settingsUpload}
                                             </Tooltip> :
                                                 settingsUpload}
-                                            {instructions ? <Tooltip
+                                            {state.tooltips ? <Tooltip
                                                 content={t('tip.text8')}
                                                 relationship='description'
                                                 withArrow
@@ -539,7 +667,7 @@ const PageSet = () => {
                                         <Text size={text500}>{t('settings.title1')}</Text>
                                     </DialogTitle>
                                     <DialogContent className={styles.dialog}>
-                                        {instructions ? <Tooltip
+                                        {state.tooltips ? <Tooltip
                                             content={t('tip.text6')}
                                             relationship='description'
                                             withArrow
@@ -550,18 +678,18 @@ const PageSet = () => {
                                         }
                                         <div className='styles.settings'>
 
-                                            {instructions ? <Tooltip
+                                            {state.tooltips ? <Tooltip
                                                 content={t('tip.text5')}
                                                 relationship='description'
                                                 withArrow
                                             >
-                                                {switchSearch}
+                                                {switchTooltip}
                                             </Tooltip> :
-                                                <>{switchSearch}</>
+                                                <>{switchTooltip}</>
                                             }
 
 
-                                            {instructions ? <Tooltip
+                                            {state.tooltips ? <Tooltip
                                                 content={t('tip.text4')}
                                                 relationship='description'
                                                 withArrow
@@ -576,7 +704,7 @@ const PageSet = () => {
                                         </div>
                                         <div className='styles.settings'>
 
-                                            {instructions ? <Tooltip
+                                            {state.tooltips ? <Tooltip
                                                 content={t('tip.text3')}
                                                 relationship='description'
                                                 withArrow
@@ -587,7 +715,7 @@ const PageSet = () => {
                                             }
 
 
-                                            {instructions ? <Tooltip
+                                            {state.tooltips ? <Tooltip
                                                 content={t('tip.text2')}
                                                 relationship='description'
                                                 withArrow
@@ -599,7 +727,7 @@ const PageSet = () => {
 
                                         </div>
 
-                                        {instructions && <div className={styles.instructions}>
+                                        {state.instructions && <div className={styles.instructions}>
                                             <Divider appearance='brand' className={styles.dividertop} />
 
 
@@ -656,16 +784,31 @@ const PageSet = () => {
                                             onChange={(_, data) => { setCriteria(data.value); }}
                                         />
 
-                                        <Text size={text200} className={styles.caption} >{t('search.caption2')}</Text>
-                                        {/* 
-                                        {instructions && <div className={styles.instructions}>
+                                        <Text size={text200} className={styles.captiontextarea} >{t('search.caption2')}</Text>
+
+                                        <RadioGroup value={text} required>
+
+                                            <div className='styles.settings'>
+
+                                                <Radio value='small' label={t('send.label3')} />
+                                                <Radio value='medium' label={t('send.label4')} />
+                                            </div>
+                                            <div className='styles.settings'>
+
+                                                <Radio value='small' label={t('send.label1')} />
+                                                <Radio value='medium' label={t('send.label2')} />
+                                            </div>
+
+                                        </RadioGroup>
+
+                                        {state.instructions && <div className={styles.instructions}>
                                             <Divider appearance='brand' className={styles.dividertop} />
                                             <Text size={text300}>{t('search.text1')}</Text>
                                             <Text size={text300}>{t('search.text2')}</Text>
                                             <Text size={text300}>{t('search.text3')}</Text>
                                             <Divider appearance='brand' className={styles.dividerbottom} />
                                         </div>
-                                        } */}
+                                        }
                                     </DialogContent>
                                 </DialogBody>
                             </DialogSurface>
@@ -696,7 +839,8 @@ const PageSet = () => {
                                         <Text size={text500}>{t('add.title1')}</Text>
                                     </DialogTitle>
                                     <DialogContent className={styles.dialog}>
-
+                                        <Input appearance='outline' className={styles.inputadd} />
+                                        <Text size={text200} className={styles.captioninput} >{t('add.caption4')}</Text>
                                         <Textarea
                                             appearance='outline'
                                             size={area}
@@ -706,9 +850,9 @@ const PageSet = () => {
                                             onChange={(_, data) => { setTags(data.value); }}
                                         />
 
-                                        <Text size={text200} className={styles.caption} >{t('add.caption2')}</Text>
+                                        <Text size={text200} className={styles.captiontextarea} >{t('add.caption2')}</Text>
 
-                                        {instructions && <div className={styles.instructions}>
+                                        {state.instructions && <div className={styles.instructions}>
                                             <Divider appearance='brand' className={styles.dividertop} />
                                             {/* ignore no selected... */}
 
@@ -735,8 +879,8 @@ const PageSet = () => {
                                     <DialogTitle className={styles.title}
                                         action={
                                             <>
-                                                <DialogTrigger disableButtonEnhancement action='close'>
-                                                    <ArrowUploadFilled className={styles.icon28} />
+                                                <DialogTrigger disableButtonEnhancement action='open'>
+                                                    <ArrowUploadFilled className={styles.icon28} onClick={() => notify()} />
                                                 </DialogTrigger>
 
                                                 <DialogTrigger disableButtonEnhancement action='close'>
@@ -748,19 +892,22 @@ const PageSet = () => {
                                         <Text size={text500}>{t('name.title1')}</Text>
                                     </DialogTitle>
                                     <DialogContent className={styles.dialog}>
-                                        <Switch
-                                            className={styles.switch}
-                                            checked={verbose}
-                                            onChange={onVerbose}
-                                            label={verbose ? t('settings.label1') : t('settings.label2')}
+
+
+                                        <Toaster
+                                            toasterId={'toaster'}
+                                            position='top'
+                                            pauseOnHover
+                                            pauseOnWindowBlur
+                                            timeout={1000}
                                         />
-                                        <Switch
-                                            className={styles.switch}
-                                            checked={instructions}
-                                            onChange={onInstructions}
-                                            label={instructions ? t('settings.label3') : t('settings.label4')}
-                                        />
-                                        {instructions && <div className={styles.instructions}>
+
+
+
+                                        <Text className={styles.name} size={text400}>Account: Buster</Text>
+                                        <Input appearance='outline' className={styles.inputadd} />
+                                        <Text size={text200} className={styles.captioninput} >{t('name.caption1')}</Text>
+                                        {state.instructions && <div className={styles.instructions}>
                                             <Divider appearance='brand' className={styles.dividertop} />
                                             <Text size={text300}>{t('settings.text1')}</Text>
                                             <Text size={text300}>{t('settings.text2')}</Text>
@@ -781,7 +928,7 @@ const PageSet = () => {
                                 <DialogBody className={styles.root}>
                                     <DialogTitle className={styles.title}
                                         action={<>
-                                            {instructions ? <Tooltip
+                                            {state.tooltips ? <Tooltip
                                                 content={t('tip.text7')}
                                                 relationship='description'
                                                 withArrow
@@ -789,7 +936,7 @@ const PageSet = () => {
                                                 {settingsUpload}
                                             </Tooltip> :
                                                 settingsUpload}
-                                            {instructions ? <Tooltip
+                                            {state.tooltips ? <Tooltip
                                                 content={t('tip.text8')}
                                                 relationship='description'
                                                 withArrow
@@ -807,7 +954,7 @@ const PageSet = () => {
                                         <Text size={text500}>{t('settings.title1')}</Text>
                                     </DialogTitle>
                                     <DialogContent className={styles.dialog}>
-                                        {instructions ? <Tooltip
+                                        {state.tooltips ? <Tooltip
                                             content={t('tip.text6')}
                                             relationship='description'
                                             withArrow
@@ -818,18 +965,18 @@ const PageSet = () => {
                                         }
                                         <div className='styles.settings'>
 
-                                            {instructions ? <Tooltip
+                                            {state.tooltips ? <Tooltip
                                                 content={t('tip.text5')}
                                                 relationship='description'
                                                 withArrow
                                             >
-                                                {switchSearch}
+                                                {switchTooltip}
                                             </Tooltip> :
-                                                <>{switchSearch}</>
+                                                <>{switchTooltip}</>
                                             }
 
 
-                                            {instructions ? <Tooltip
+                                            {state.tooltips ? <Tooltip
                                                 content={t('tip.text4')}
                                                 relationship='description'
                                                 withArrow
@@ -844,7 +991,7 @@ const PageSet = () => {
                                         </div>
                                         <div className='styles.settings'>
 
-                                            {instructions ? <Tooltip
+                                            {state.tooltips ? <Tooltip
                                                 content={t('tip.text3')}
                                                 relationship='description'
                                                 withArrow
@@ -855,7 +1002,7 @@ const PageSet = () => {
                                             }
 
 
-                                            {instructions ? <Tooltip
+                                            {state.tooltips ? <Tooltip
                                                 content={t('tip.text2')}
                                                 relationship='description'
                                                 withArrow
@@ -867,7 +1014,7 @@ const PageSet = () => {
 
                                         </div>
 
-                                        {instructions && <div className={styles.instructions}>
+                                        {state.instructions && <div className={styles.instructions}>
                                             <Divider appearance='brand' className={styles.dividertop} />
 
 
@@ -896,8 +1043,8 @@ const PageSet = () => {
                     <Text size={text500}>pieces here???</Text>
                 </div>
                 }
-                {!ribbon && <div className={styles.contacts}> 
-                <Text size={text500}>contacts here???</Text>
+                {!ribbon && <div className={styles.contacts}>
+                    <Text size={text500}>contacts here???</Text>
                 </div>}
             </div>
 
