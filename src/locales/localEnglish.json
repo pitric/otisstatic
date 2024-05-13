@@ -23,8 +23,8 @@
   },
   "send": {
     "title1": "Send",
-    "label1": "Asending",
-    "label2": "Desending",
+    "label1": "Ascending",
+    "label2": "Descending",
     "label3": "Newest",
     "label4": "Oldest"
   },

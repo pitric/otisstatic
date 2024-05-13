@@ -1,4 +1,4 @@
-import { Dialog, DialogBody, DialogContent, DialogSurface, DialogTitle, DialogTrigger, FluentProvider, Textarea, makeStyles, Text, tokens, Switch, BrandVariants, createLightTheme, shorthands, Divider, Radio, RadioGroup, createDarkTheme, Theme, Tooltip, Input, Accordion, AccordionHeader, AccordionItem, AccordionPanel, Toast, ToastTitle, useToastController, Toaster } from '@fluentui/react-components';
+import { Dialog, DialogBody, DialogContent, DialogSurface, DialogTitle, DialogTrigger, FluentProvider, Textarea, makeStyles, Text, tokens, Switch, BrandVariants, createLightTheme, shorthands, Divider, Radio, RadioGroup, createDarkTheme, Tooltip, Input, Accordion, AccordionHeader, AccordionItem, AccordionPanel, Toast, ToastTitle, useToastController, Toaster } from '@fluentui/react-components';
 import {
     SearchRegular,
     AddRegular,
@@ -18,19 +18,101 @@ import { useTranslation } from 'react-i18next';
 //   ----------------------------------------------------------------reducer...
 enum ActionType {
     Instructions = 'instructions',
-    Tooltips = 'tooltips'
+    Tooltips = 'tooltips',
+    Access = 'access',
+    Verbose = 'verbose',
+    Insert = 'insert',
+    Theme = 'theme',
+    Ribbon = 'ribbon',
+    Language = 'language',
+    Open = 'open',
+    CriteriaPiece = 'criteriaPiece',
+    CriteriaContact = 'criteriaContact',
+    TagsPiece = 'tagsPiece',
+    TagsContact = 'tagsContact',
+    Text = 'text',
+    Text200 = 'text200',
+    Text300 = 'text300',
+    Text400 = 'text400',
+    Text500 = 'text500',
+    Area = 'area',
+    OrderPiece = 'orderPiece',
+    OrderContact = 'orderContact'
 }
 
 type AppState = {
     instructions: boolean;
     tooltips: boolean;
+    access: boolean;
+    verbose: boolean;
+    insert: boolean;
+    theme: boolean;
+    ribbon: boolean;
+    language: boolean;
+    open: 'searchpiece' | 'searchcontact' | 'addpiece' | 'addcontact' | 'sendpiece' | 'renamecontact' | 'settings' | undefined,
+    criteriaPiece: string;
+    criteriaContact: string;
+    tagsPiece: string;
+    tagsContact: string;
+    text: string;
+    text200: 300 | 100 | 200 | 400 | 500 | 600 | 700 | 800 | 900 | 1000 | undefined;
+    text300: 300 | 100 | 200 | 400 | 500 | 600 | 700 | 800 | 900 | 1000 | undefined;
+    text400: 300 | 100 | 200 | 400 | 500 | 600 | 700 | 800 | 900 | 1000 | undefined;
+    text500: 300 | 100 | 200 | 400 | 500 | 600 | 700 | 800 | 900 | 1000 | undefined;
+    area: 'medium' | 'large' | 'small' | undefined;
+    orderPiece: 'ascending' | 'descending' | 'newest' | 'oldest';
+    orderContact: 'ascending' | 'descending' | 'newest' | 'oldest';
+
 };
 
 type Action =
     | { type: ActionType.Instructions; payload: boolean }
     | { type: ActionType.Tooltips; payload: boolean }
+    | { type: ActionType.Access; payload: boolean }
+    | { type: ActionType.Verbose; payload: boolean }
+    | { type: ActionType.Insert; payload: boolean }
+    | { type: ActionType.Theme; payload: boolean }
+    | { type: ActionType.Ribbon; payload: boolean }
+    | { type: ActionType.Language; payload: boolean }
+    | { type: ActionType.Open; payload: 'searchpiece' | 'searchcontact' | 'addpiece' | 'addcontact' | 'sendpiece' | 'renamecontact' | 'settings' | undefined }
+    | { type: ActionType.CriteriaPiece; payload: string }
+    | { type: ActionType.CriteriaContact; payload: string }
+    | { type: ActionType.TagsPiece; payload: string }
+    | { type: ActionType.TagsContact; payload: string }
+    | { type: ActionType.Text; payload: string }
 
-const initialState: AppState = { instructions: true, tooltips: true };
+    | { type: ActionType.Text200; payload: 300 | 100 | 200 | 400 | 500 | 600 | 700 | 800 | 900 | 1000 | undefined }
+    | { type: ActionType.Text300; payload: 300 | 100 | 200 | 400 | 500 | 600 | 700 | 800 | 900 | 1000 | undefined }
+    | { type: ActionType.Text400; payload: 300 | 100 | 200 | 400 | 500 | 600 | 700 | 800 | 900 | 1000 | undefined }
+    | { type: ActionType.Text500; payload: 300 | 100 | 200 | 400 | 500 | 600 | 700 | 800 | 900 | 1000 | undefined }
+    | { type: ActionType.Area; payload: 'medium' | 'large' | 'small' | undefined }
+    | { type: ActionType.OrderPiece; payload: 'ascending' | 'descending' | 'newest' | 'oldest' }
+    | { type: ActionType.OrderContact; payload: 'ascending' | 'descending' | 'newest' | 'oldest' };
+
+const initialState: AppState = {
+    instructions: true,
+    tooltips: true,
+    access: true,
+    verbose: true,
+    insert: true,
+    theme: true,
+    ribbon: true,
+    language: true,
+    open: undefined,
+    criteriaPiece: '',
+    criteriaContact: '',
+    tagsPiece: '',
+    tagsContact: '',
+    text: 'medium',
+    text200: 200,
+    text300: 300,
+    text400: 400,
+    text500: 500,
+    area: 'medium',
+    orderPiece: 'newest',
+    orderContact: 'newest'
+
+};
 
 const reducer: React.Reducer<AppState, Action> = (state, action) => {
     switch (action.type) {
@@ -38,6 +120,47 @@ const reducer: React.Reducer<AppState, Action> = (state, action) => {
             return { ...state, instructions: action.payload };
         case ActionType.Tooltips:
             return { ...state, tooltips: action.payload };
+        case ActionType.Access:
+            return { ...state, access: action.payload };
+        case ActionType.Verbose:
+            return { ...state, verbose: action.payload };
+        case ActionType.Insert:
+            return { ...state, insert: action.payload };
+        case ActionType.Theme:
+            return { ...state, theme: action.payload };
+        case ActionType.Ribbon:
+            return { ...state, ribbon: action.payload };
+        case ActionType.Language:
+            return { ...state, language: action.payload };
+        case ActionType.Open:
+            return { ...state, open: action.payload };
+        case ActionType.CriteriaPiece:
+            return { ...state, criteriaPiece: action.payload };
+        case ActionType.CriteriaContact:
+            return { ...state, criteriaContact: action.payload };
+        case ActionType.TagsPiece:
+            return { ...state, tagsPiece: action.payload };
+        case ActionType.TagsContact:
+            return { ...state, tagsContact: action.payload };
+        case ActionType.Text:
+            if (action.payload === 'small') return { ...state, text200: 100, text300: 200, text400: 300, text500: 400, area: 'small', text: action.payload }
+            else if (action.payload === 'medium') return { ...state, text200: 200, text300: 300, text400: 400, text500: 500, area: 'medium', text: action.payload }
+            else if (action.payload === 'large') return { ...state, text200: 300, text300: 400, text400: 500, text500: 600, area: 'large', text: action.payload }
+            else return { ...state };
+        case ActionType.Text200:
+            return { ...state, text200: action.payload };
+        case ActionType.Text300:
+            return { ...state, text300: action.payload };
+        case ActionType.Text400:
+            return { ...state, text400: action.payload };
+        case ActionType.Text500:
+            return { ...state, text500: action.payload };
+        case ActionType.Area:
+            return { ...state, area: action.payload };
+        case ActionType.OrderPiece:
+            return { ...state, orderPiece: action.payload };
+        case ActionType.OrderContact:
+            return { ...state, orderContact: action.payload };
         default:
             return { ...state };
     }
@@ -288,90 +411,17 @@ const PageSet = () => {
 
     const [state, dispatch] = React.useReducer(reducer, initialState);
 
-    const [text200, setText200] = React.useState<300 | 100 | 200 | 400 | 500 | 600 | 700 | 800 | 900 | 1000 | undefined>(200);
-    const [text300, setText300] = React.useState<300 | 100 | 200 | 400 | 500 | 600 | 700 | 800 | 900 | 1000 | undefined>(300);
-    const [text400, setText400] = React.useState<300 | 100 | 200 | 400 | 500 | 600 | 700 | 800 | 900 | 1000 | undefined>(400);
-    const [text500, setText500] = React.useState<300 | 100 | 200 | 400 | 500 | 600 | 700 | 800 | 900 | 1000 | undefined>(500);
-
-    const [area, setArea] = React.useState<'medium' | 'large' | 'small' | undefined>('medium');
-
     const styles = useStyles();
 
-
-
-    const [open, setOpen] = React.useState<'searchpiece' | 'searchcontact' | 'addpiece' | 'addcontact' | 'sendpiece' | 'renamecontact' | 'settings' | undefined>();
-
-    const [access, setAccess] = React.useState(true);
-    const onAccess = React.useCallback((ev: { currentTarget: { checked: boolean | ((prevState: boolean) => boolean); }; }) => { setAccess(ev.currentTarget.checked); }, [setAccess]
-    );
-
-    const [verbose, setVerbose] = React.useState(true);
-    const onVerbose = React.useCallback((ev: { currentTarget: { checked: boolean | ((prevState: boolean) => boolean); }; }) => { setVerbose(ev.currentTarget.checked); }, [setVerbose]
-    );
-
-    // const [verbose, setVerbose] = React.useState(true);
-    // const onVerbose = React.useCallback((ev: { currentTarget: { checked: boolean | ((prevState: boolean) => boolean); }; }) => { setVerbose(ev.currentTarget.checked); }, [setVerbose]);
-
-    // const verboseReducer = (state: boolean, action: boolean) => {
-    //     switch (action) {
-    //         case true:
-    //             return true;
-    //         case false:
-    //             return false;
-    //         default:
-    //             return state;
-    //     }
-    // };
-
-    // const [verboseState, verboseDispatch] = React.useReducer(verboseReducer, verbose);
-
-    const [insert, setInsert] = React.useState(true);
-    const onInsert = React.useCallback((ev: { currentTarget: { checked: boolean | ((prevState: boolean) => boolean); }; }) => { setInsert(ev.currentTarget.checked); }, [setInsert]
-    );
-    // const [tooltips, setTooltips] = React.useState(true);
-    // const onTooltip = React.useCallback((ev: { currentTarget: { checked: boolean | ((prevState: boolean) => boolean); }; }) => { setTooltips(ev.currentTarget.checked); }, [setTooltips]
-    // );
-    const [theme, setTheme] = React.useState(true);
-    const onTheme = React.useCallback((ev: { currentTarget: { checked: boolean | ((prevState: boolean) => boolean); }; }) => { setTheme(ev.currentTarget.checked); setStyle(ev.currentTarget.checked ? lightTheme : darkTheme) }, [setTheme]
-    );
-
-    const [style, setStyle] = React.useState<Theme>(lightTheme);
-
-    // const [instructions, setInstructions] = React.useState(true);
-    // const onInstructions = React.useCallback((ev: { currentTarget: { checked: boolean | ((prevState: boolean) => boolean); }; }) => { setInstructions(ev.currentTarget.checked); }, [setInstructions]
-    // );
-
-
-    const [text, setText] = React.useState('medium');
-
-
-    const [criteria, setCriteria] = React.useState('');
-    const [tags, setTags] = React.useState('');
-
-    const [ribbon, setRibbon] = React.useState(true);
-    const onRibbon = () => { setRibbon(!ribbon); setOpen(undefined), [setRibbon] };
-    //     const onRibbon12345 = React.useCallback((ev: { currentTarget: { checked: boolean | ((prevState: boolean) => boolean); }; }) => { setRibbon(ev.currentTarget.checked); }, [setRibbon]
-    // );
-
-
-    const [language, setLanguage] = React.useState(true);
-    const onLanguage = React.useCallback((ev: { currentTarget: { checked: boolean | ((prevState: boolean) => boolean); }; }) => { setLanguage(ev.currentTarget.checked); }, [setLanguage]
-    );
     React.useEffect(() => {
-        language ? i18n.changeLanguage('en') : i18n.changeLanguage('es');
-    }, [language]);
-
-    // const cloudTheme = async () => {
-    //     // const res =theme? 'light':'dark'
-    //     await axios.post(`api/theme`, { theme: theme ? 'light' : 'dark', oid: '12345...' });
-    // };
+        state.language ? i18n.changeLanguage('en') : i18n.changeLanguage('es');
+    }, [state.language]);
 
     const switchLanguage = <Switch
         className={styles.switch}
-        checked={language}
-        onChange={onLanguage}
-        label={language ? t('language.label1') : t('language.label2')} />;
-
+        checked={state.language}
+        onChange={() => dispatch({ type: ActionType.Language, payload: !state.language })}
+        label={state.language ? t('language.label1') : t('language.label2')} />;
     const switchInstructions = <Switch
         className={styles.switch}
         checked={state.instructions}
@@ -384,24 +434,21 @@ const PageSet = () => {
         label={state.tooltips ? t('settings.label5') : t('settings.label6')} />;
     const switchSearch = <Switch
         className={styles.switch}
-        checked={verbose}
-        onChange={onVerbose}
-        label={verbose ? t('settings.label1') : t('settings.label2')} />;
+        checked={state.verbose}
+        onChange={() => dispatch({ type: ActionType.Verbose, payload: !state.verbose })}
+        label={state.verbose ? t('settings.label1') : t('settings.label2')} />;
     const switchInsert = <Switch
         className={styles.switch}
-        checked={insert}
-        onChange={onInsert}
-        label={insert ? t('settings.label7') : t('settings.label8')} />;
+        checked={state.insert}
+        onChange={() => dispatch({ type: ActionType.Insert, payload: !state.insert })}
+        label={state.insert ? t('settings.label7') : t('settings.label8')} />;
     const switchTheme = <Switch
         className={styles.switch}
-        checked={theme}
-        onChange={onTheme}
-        label={theme ? t('theme.label1') : t('theme.label2')} />;
-    const radioText = <RadioGroup value={text} onChange={(_: any, data: { value: React.SetStateAction<string>; }) => {
-        setText(data.value);
-        if (data.value === 'small') { setText200(100); setText300(200); setText400(300); setText500(400); setArea('small'); }
-        else if (data.value === 'large') { setText200(300); setText300(400); setText400(500); setText500(600); setArea('large'); }
-        else { setText200(200); setText300(300); setText400(400); setArea('medium'); }
+        checked={state.theme}
+        onChange={() => { dispatch({ type: ActionType.Theme, payload: !state.theme }) }}
+        label={state.theme ? t('theme.label1') : t('theme.label2')} />;
+    const radioText = <RadioGroup value={state.text} onChange={(_: any, data: { value: React.SetStateAction<any>; }) => {
+        dispatch({ type: ActionType.Text, payload: data.value })
     }} required>
         <Radio value='small' label={t('text.label1')} />
         <Radio value='medium' label={t('text.label2')} />
@@ -414,7 +461,6 @@ const PageSet = () => {
         <DismissFilled className={styles.icon28} />
     </DialogTrigger>;
 
-    // const toasterId = useId('toaster');
     const { dispatchToast } = useToastController('toaster');
     const notify = () =>
         dispatchToast(
@@ -426,7 +472,7 @@ const PageSet = () => {
 
 
     return (
-        <FluentProvider theme={style}>
+        <FluentProvider theme={state.theme ? lightTheme : darkTheme}>
             <div className={styles.page} >
 
                 <div className={styles.content} >
@@ -436,19 +482,22 @@ const PageSet = () => {
                             relationship='description'
                             withArrow
                         >
-                            <ArrowSwapRegular className={styles.icon24} onClick={onRibbon} />
+                            <ArrowSwapRegular className={styles.icon24} onClick={() => dispatch({ type: ActionType.Ribbon, payload: !state.ribbon })} />
                         </Tooltip> :
-                            <ArrowSwapRegular className={styles.icon24} onClick={onRibbon} />
+                            <ArrowSwapRegular className={styles.icon24} onClick={() => dispatch({ type: ActionType.Ribbon, payload: !state.ribbon })} />
                         }
 
-                        <Text font='base' weight='medium' size={text400}>{ribbon ? t('ribbon.label1') : t('ribbon.label2')}</Text>
+                        <Text font='base' weight='medium' size={state.text400}>{state.ribbon ? t('ribbon.label1') : t('ribbon.label2')}</Text>
                     </div>
 
                     {/* // -----------------------------------------------pieces... */}
 
-                    {ribbon && <>
+                    {state.ribbon && <>
 
-                        <Dialog modalType='non-modal' open={open === 'searchpiece'} onOpenChange={(_, data) => setOpen(data.open ? 'searchpiece' : undefined)} >
+                        {/* <Dialog modalType='non-modal' open={open === 'searchpiece'} onOpenChange={(_, data) => setOpen(data.open ? 'searchpiece' : undefined)} > */}
+
+                        <Dialog modalType='non-modal' open={state.open === 'searchpiece'} onOpenChange={(_, data) => dispatch({ type: ActionType.Open, payload: data.open ? 'searchpiece' : undefined })} >
+
                             <DialogTrigger disableButtonEnhancement >
                                 <SearchRegular className={styles.icon24} />
 
@@ -469,31 +518,33 @@ const PageSet = () => {
                                             </>
                                         }
                                     >
-                                        <Text size={text500}>{t('search.title1')}</Text>
+                                        <Text size={state.text500}>{t('search.title1')}</Text>
                                     </DialogTitle>
                                     <DialogContent>
                                         <Textarea
                                             appearance='outline'
-                                            size={area}
+                                            size={state.area}
                                             resize='vertical'
                                             className={styles.textarea}
-                                            value={criteria}
-                                            onChange={(_, data) => { setCriteria(data.value); }}
+                                            value={state.criteriaPiece}
+                                            onChange={(_, data) => { dispatch({ type: ActionType.CriteriaPiece, payload: data.value }) }}
                                         />
 
-                                        <Text size={text200} className={styles.captiontextarea} >{t('search.caption1')}</Text>
+                                        <Text size={state.text200} className={styles.captiontextarea} >{t('search.caption1')}</Text>
 
-                                        <RadioGroup value={text} required>
+                                        <RadioGroup value={state.orderPiece} onChange={(_: any, data: { value: React.SetStateAction<any>; }) => {
+                                            dispatch({ type: ActionType.OrderPiece, payload: data.value })
+                                        }} required>
 
                                             <div className='styles.settings'>
 
-                                                <Radio value='small' label={t('send.label3')} />
-                                                <Radio value='medium' label={t('send.label4')} />
+                                                <Radio value='newest' label={t('send.label3')} />
+                                                <Radio value='oldest' label={t('send.label4')} />
                                             </div>
                                             <div className='styles.settings'>
 
-                                                <Radio value='small' label={t('send.label1')} />
-                                                <Radio value='medium' label={t('send.label2')} />
+                                                <Radio value='ascending' label={t('send.label1')} />
+                                                <Radio value='descending' label={t('send.label2')} />
                                             </div>
 
                                         </RadioGroup>
@@ -508,9 +559,9 @@ const PageSet = () => {
                                         </div>
                                         {state.instructions && <div className={styles.instructions}>
                                             <Divider appearance='brand' className={styles.dividertop} />
-                                            <Text size={text300}>{t('search.text1')}</Text>
-                                            <Text size={text300}>{t('search.text2')}</Text>
-                                            <Text size={text300}>{t('search.text3')}</Text>
+                                            <Text size={state.text300}>{t('search.text1')}</Text>
+                                            <Text size={state.text300}>{t('search.text2')}</Text>
+                                            <Text size={state.text300}>{t('search.text3')}</Text>
                                             <Divider appearance='brand' className={styles.dividerbottom} />
                                         </div>
                                         }
@@ -522,7 +573,9 @@ const PageSet = () => {
 
 
 
-                        <Dialog modalType='non-modal' open={open === 'addpiece'} onOpenChange={(_, data) => setOpen(data.open ? 'addpiece' : undefined)} >
+                        {/* <Dialog modalType='non-modal' open={open === 'addpiece'} onOpenChange={(_, data) => setOpen(data.open ? 'addpiece' : undefined)} > */}
+                        <Dialog modalType='non-modal' open={state.open === 'addpiece'} onOpenChange={(_, data) => dispatch({ type: ActionType.Open, payload: data.open ? 'addpiece' : undefined })} >
+
                             <DialogTrigger disableButtonEnhancement >
                                 <AddRegular className={styles.icon24} />
                             </DialogTrigger>
@@ -541,36 +594,36 @@ const PageSet = () => {
                                             </>
                                         }
                                     >
-                                        <Text size={text500}>{t('add.title1')}</Text>
+                                        <Text size={state.text500}>{t('add.title1')}</Text>
                                     </DialogTitle>
                                     <DialogContent className={styles.dialog}>
                                         <Input appearance='outline' className={styles.inputadd} />
-                                        <Text size={text200} className={styles.captioninput} >{t('add.caption3')}</Text>
+                                        <Text size={state.text200} className={styles.captioninput} >{t('add.caption3')}</Text>
                                         <Textarea
                                             appearance='outline'
-                                            size={area}
+                                            size={state.area}
                                             resize='vertical'
                                             className={styles.textareaadd}
-                                            value={tags}
-                                            onChange={(_, data) => { setTags(data.value); }}
+                                            value={state.tagsPiece}
+                                            onChange={(_, data) => { dispatch({ type: ActionType.TagsPiece, payload: data.value }) }}
                                         />
 
-                                        <Text size={text200} className={styles.captiontextarea} >{t('add.caption1')}</Text>
+                                        <Text size={state.text200} className={styles.captiontextarea} >{t('add.caption1')}</Text>
 
                                         <Switch
                                             className={styles.switch}
-                                            checked={access}
-                                            onChange={onAccess}
-                                            label={access ? t('add.label1') : t('add.label2')}
+                                            checked={state.access}
+                                            onChange={() => dispatch({ type: ActionType.Access, payload: !state.access })}
+                                            label={state.access ? t('add.label1') : t('add.label2')}
                                         />
 
                                         {state.instructions && <div className={styles.instructions}>
                                             <Divider appearance='brand' className={styles.dividertop} />
                                             {/* ignore no selected... */}
 
-                                            <Text size={text300}>{t('add.text1')}</Text>
-                                            <Text size={text300}>{t('add.text2')}</Text>
-                                            <Text size={text300}>{t('add.text3')}</Text>
+                                            <Text size={state.text300}>{t('add.text1')}</Text>
+                                            <Text size={state.text300}>{t('add.text2')}</Text>
+                                            <Text size={state.text300}>{t('add.text3')}</Text>
 
                                             <Divider appearance='brand' className={styles.dividerbottom} />
 
@@ -582,7 +635,9 @@ const PageSet = () => {
                             </DialogSurface>
                         </Dialog>
 
-                        <Dialog modalType='non-modal' open={open === 'sendpiece'} onOpenChange={(_, data) => setOpen(data.open ? 'sendpiece' : undefined)} >
+                        {/* <Dialog modalType='non-modal' open={open === 'sendpiece'} onOpenChange={(_, data) => setOpen(data.open ? 'sendpiece' : undefined)} > */}
+                        <Dialog modalType='non-modal' open={state.open === 'sendpiece'} onOpenChange={(_, data) => dispatch({ type: ActionType.Open, payload: data.open ? 'sendpiece' : undefined })} >
+
                             <DialogTrigger disableButtonEnhancement >
                                 <SendRegular className={styles.icon24} />
                             </DialogTrigger>
@@ -601,7 +656,7 @@ const PageSet = () => {
                                             </>
                                         }
                                     >
-                                        <Text size={text500}>{t('send.title1')}</Text>
+                                        <Text size={state.text500}>{t('send.title1')}</Text>
                                     </DialogTitle>
                                     <DialogContent className={styles.dialog}>
 
@@ -610,22 +665,22 @@ const PageSet = () => {
                                             <AccordionItem value='1'>
                                                 <AccordionHeader size='large'>Pieces</AccordionHeader>
                                                 <AccordionPanel>
-                                                    <Text size={text300}>pieces here??? name only???</Text>
+                                                    <Text size={state.text300}>pieces here??? name only???</Text>
                                                 </AccordionPanel>
                                             </AccordionItem>
                                             <AccordionItem value='2'>
                                                 <AccordionHeader size='large'>Contacts</AccordionHeader>
                                                 <AccordionPanel>
-                                                    <Text size={text300}>contacts here?? name only???</Text>
+                                                    <Text size={state.text300}>contacts here?? name only???</Text>
                                                 </AccordionPanel>
                                             </AccordionItem>
 
                                         </Accordion>
                                         {state.instructions && <div className={styles.instructions}>
                                             <Divider appearance='brand' className={styles.dividertop} />
-                                            <Text size={text300}>{t('settings.text1')}</Text>
-                                            <Text size={text300}>{t('settings.text2')}</Text>
-                                            <Text size={text300}>{t('settings.text3')}</Text>
+                                            <Text size={state.text300}>{t('settings.text1')}</Text>
+                                            <Text size={state.text300}>{t('settings.text2')}</Text>
+                                            <Text size={state.text300}>{t('settings.text3')}</Text>
                                             <Divider appearance='brand' className={styles.dividerbottom} />
                                         </div>
                                         }
@@ -633,7 +688,8 @@ const PageSet = () => {
                                 </DialogBody>
                             </DialogSurface>
                         </Dialog>
-                        <Dialog modalType='non-modal' open={open === 'settings'} onOpenChange={(_, data) => setOpen(data.open ? 'settings' : undefined)} >
+                        {/* <Dialog modalType='non-modal' open={open === 'settings'} onOpenChange={(_, data) => setOpen(data.open ? 'settings' : undefined)} > */}
+                        <Dialog modalType='non-modal' open={state.open === 'settings'} onOpenChange={(_, data) => dispatch({ type: ActionType.Open, payload: data.open ? 'settings' : undefined })} >
                             <DialogTrigger disableButtonEnhancement >
                                 <SettingsRegular className={styles.icon24} />
                             </DialogTrigger>
@@ -664,7 +720,7 @@ const PageSet = () => {
 
                                         }
                                     >
-                                        <Text size={text500}>{t('settings.title1')}</Text>
+                                        <Text size={state.text500}>{t('settings.title1')}</Text>
                                     </DialogTitle>
                                     <DialogContent className={styles.dialog}>
                                         {state.tooltips ? <Tooltip
@@ -731,9 +787,9 @@ const PageSet = () => {
                                             <Divider appearance='brand' className={styles.dividertop} />
 
 
-                                            <Text size={text300}>{t('text.text1')}</Text>
-                                            <Text size={text300}>{t('text.text2')}</Text>
-                                            <Text size={text300}>{t('text.text3')}</Text>
+                                            <Text size={state.text300}>{t('text.text1')}</Text>
+                                            <Text size={state.text300}>{t('text.text2')}</Text>
+                                            <Text size={state.text300}>{t('text.text3')}</Text>
 
                                             <Divider appearance='brand' className={styles.dividerbottom} />
 
@@ -750,8 +806,10 @@ const PageSet = () => {
 
                     {/* // -----------------------------------------------contacts... */}
 
-                    {!ribbon && <>
-                        <Dialog modalType='non-modal' open={open === 'searchcontact'} onOpenChange={(_, data) => setOpen(data.open ? 'searchcontact' : undefined)} >
+                    {!state.ribbon && <>
+                        {/* <Dialog modalType='non-modal' open={open === 'searchcontact'} onOpenChange={(_, data) => setOpen(data.open ? 'searchcontact' : undefined)} > */}
+
+                        <Dialog modalType='non-modal' open={state.open === 'searchcontact'} onOpenChange={(_, data) => dispatch({ type: ActionType.Open, payload: data.open ? 'searchcontact' : undefined })} >
                             <DialogTrigger disableButtonEnhancement >
                                 <SearchRegular className={styles.icon24} />
 
@@ -772,40 +830,41 @@ const PageSet = () => {
                                             </>
                                         }
                                     >
-                                        <Text size={text500}>{t('search.title1')}</Text>
+                                        <Text size={state.text500}>{t('search.title1')}</Text>
                                     </DialogTitle>
                                     <DialogContent>
                                         <Textarea
                                             appearance='outline'
-                                            size={area}
+                                            size={state.area}
                                             resize='vertical'
                                             className={styles.textarea}
-                                            value={criteria}
-                                            onChange={(_, data) => { setCriteria(data.value); }}
+                                            value={state.criteriaContact}
+                                            onChange={(_, data) => { dispatch({ type: ActionType.CriteriaContact, payload: data.value }) }}
                                         />
 
-                                        <Text size={text200} className={styles.captiontextarea} >{t('search.caption2')}</Text>
+                                        <Text size={state.text200} className={styles.captiontextarea} >{t('search.caption2')}</Text>
 
-                                        <RadioGroup value={text} required>
-
+                                        <RadioGroup value={state.orderContact} onChange={(_: any, data: { value: React.SetStateAction<any>; }) => {
+                                            dispatch({ type: ActionType.OrderContact, payload: data.value })
+                                        }} required>
                                             <div className='styles.settings'>
 
-                                                <Radio value='small' label={t('send.label3')} />
-                                                <Radio value='medium' label={t('send.label4')} />
+                                                <Radio value='newest' label={t('send.label3')} />
+                                                <Radio value='oldest' label={t('send.label4')} />
                                             </div>
                                             <div className='styles.settings'>
 
-                                                <Radio value='small' label={t('send.label1')} />
-                                                <Radio value='medium' label={t('send.label2')} />
+                                                <Radio value='ascending' label={t('send.label1')} />
+                                                <Radio value='descending' label={t('send.label2')} />
                                             </div>
 
                                         </RadioGroup>
 
                                         {state.instructions && <div className={styles.instructions}>
                                             <Divider appearance='brand' className={styles.dividertop} />
-                                            <Text size={text300}>{t('search.text1')}</Text>
-                                            <Text size={text300}>{t('search.text2')}</Text>
-                                            <Text size={text300}>{t('search.text3')}</Text>
+                                            <Text size={state.text300}>{t('search.text1')}</Text>
+                                            <Text size={state.text300}>{t('search.text2')}</Text>
+                                            <Text size={state.text300}>{t('search.text3')}</Text>
                                             <Divider appearance='brand' className={styles.dividerbottom} />
                                         </div>
                                         }
@@ -817,7 +876,8 @@ const PageSet = () => {
 
 
 
-                        <Dialog modalType='non-modal' open={open === 'addcontact'} onOpenChange={(_, data) => setOpen(data.open ? 'addcontact' : undefined)} >
+                        {/* <Dialog modalType='non-modal' open={open === 'addcontact'} onOpenChange={(_, data) => setOpen(data.open ? 'addcontact' : undefined)} > */}
+                        <Dialog modalType='non-modal' open={state.open === 'addcontact'} onOpenChange={(_, data) => dispatch({ type: ActionType.Open, payload: data.open ? 'addcontact' : undefined })} >
                             <DialogTrigger disableButtonEnhancement >
                                 <AddRegular className={styles.icon24} />
                             </DialogTrigger>
@@ -836,29 +896,29 @@ const PageSet = () => {
                                             </>
                                         }
                                     >
-                                        <Text size={text500}>{t('add.title1')}</Text>
+                                        <Text size={state.text500}>{t('add.title1')}</Text>
                                     </DialogTitle>
                                     <DialogContent className={styles.dialog}>
                                         <Input appearance='outline' className={styles.inputadd} />
-                                        <Text size={text200} className={styles.captioninput} >{t('add.caption4')}</Text>
+                                        <Text size={state.text200} className={styles.captioninput} >{t('add.caption4')}</Text>
                                         <Textarea
                                             appearance='outline'
-                                            size={area}
+                                            size={state.area}
                                             resize='vertical'
                                             className={styles.textareaadd}
-                                            value={tags}
-                                            onChange={(_, data) => { setTags(data.value); }}
+                                            value={state.tagsContact}
+                                            onChange={(_, data) => { dispatch({ type: ActionType.CriteriaContact, payload: data.value }) }}
                                         />
 
-                                        <Text size={text200} className={styles.captiontextarea} >{t('add.caption2')}</Text>
+                                        <Text size={state.text200} className={styles.captiontextarea} >{t('add.caption2')}</Text>
 
                                         {state.instructions && <div className={styles.instructions}>
                                             <Divider appearance='brand' className={styles.dividertop} />
                                             {/* ignore no selected... */}
 
-                                            <Text size={text300}>{t('add.text1')}</Text>
-                                            <Text size={text300}>{t('add.text2')}</Text>
-                                            <Text size={text300}>{t('add.text3')}</Text>
+                                            <Text size={state.text300}>{t('add.text1')}</Text>
+                                            <Text size={state.text300}>{t('add.text2')}</Text>
+                                            <Text size={state.text300}>{t('add.text3')}</Text>
 
                                             <Divider appearance='brand' className={styles.dividerbottom} />
 
@@ -870,7 +930,9 @@ const PageSet = () => {
                             </DialogSurface>
                         </Dialog>
 
-                        <Dialog modalType='non-modal' open={open === 'renamecontact'} onOpenChange={(_, data) => setOpen(data.open ? 'renamecontact' : undefined)} >
+                        {/* <Dialog modalType='non-modal' open={open === 'renamecontact'} onOpenChange={(_, data) => setOpen(data.open ? 'renamecontact' : undefined)} > */}
+                        <Dialog modalType='non-modal' open={state.open === 'renamecontact'} onOpenChange={(_, data) => dispatch({ type: ActionType.Open, payload: data.open ? 'renamecontact' : undefined })} >
+
                             <DialogTrigger disableButtonEnhancement >
                                 <RenameRegular className={styles.icon24} />
                             </DialogTrigger>
@@ -889,7 +951,7 @@ const PageSet = () => {
                                             </>
                                         }
                                     >
-                                        <Text size={text500}>{t('name.title1')}</Text>
+                                        <Text size={state.text500}>{t('name.title1')}</Text>
                                     </DialogTitle>
                                     <DialogContent className={styles.dialog}>
 
@@ -904,14 +966,14 @@ const PageSet = () => {
 
 
 
-                                        <Text className={styles.name} size={text400}>Account: Buster</Text>
+                                        <Text className={styles.name} size={state.text400}>Account: Buster</Text>
                                         <Input appearance='outline' className={styles.inputadd} />
-                                        <Text size={text200} className={styles.captioninput} >{t('name.caption1')}</Text>
+                                        <Text size={state.text200} className={styles.captioninput} >{t('name.caption1')}</Text>
                                         {state.instructions && <div className={styles.instructions}>
                                             <Divider appearance='brand' className={styles.dividertop} />
-                                            <Text size={text300}>{t('settings.text1')}</Text>
-                                            <Text size={text300}>{t('settings.text2')}</Text>
-                                            <Text size={text300}>{t('settings.text3')}</Text>
+                                            <Text size={state.text300}>{t('settings.text1')}</Text>
+                                            <Text size={state.text300}>{t('settings.text2')}</Text>
+                                            <Text size={state.text300}>{t('settings.text3')}</Text>
                                             <Divider appearance='brand' className={styles.dividerbottom} />
                                         </div>
                                         }
@@ -920,7 +982,8 @@ const PageSet = () => {
                             </DialogSurface>
                         </Dialog>
 
-                        <Dialog modalType='non-modal' open={open === 'settings'} onOpenChange={(_, data) => setOpen(data.open ? 'settings' : undefined)} >
+                        {/* <Dialog modalType='non-modal' open={open === 'settings'} onOpenChange={(_, data) => setOpen(data.open ? 'settings' : undefined)} > */}
+                        <Dialog modalType='non-modal' open={state.open === 'settings'} onOpenChange={(_, data) => dispatch({ type: ActionType.Open, payload: data.open ? 'settings' : undefined })} >
                             <DialogTrigger disableButtonEnhancement >
                                 <SettingsRegular className={styles.icon24} />
                             </DialogTrigger>
@@ -951,7 +1014,7 @@ const PageSet = () => {
 
                                         }
                                     >
-                                        <Text size={text500}>{t('settings.title1')}</Text>
+                                        <Text size={state.text500}>{t('settings.title1')}</Text>
                                     </DialogTitle>
                                     <DialogContent className={styles.dialog}>
                                         {state.tooltips ? <Tooltip
@@ -1018,9 +1081,9 @@ const PageSet = () => {
                                             <Divider appearance='brand' className={styles.dividertop} />
 
 
-                                            <Text size={text300}>{t('text.text1')}</Text>
-                                            <Text size={text300}>{t('text.text2')}</Text>
-                                            <Text size={text300}>{t('text.text3')}</Text>
+                                            <Text size={state.text300}>{t('text.text1')}</Text>
+                                            <Text size={state.text300}>{t('text.text2')}</Text>
+                                            <Text size={state.text300}>{t('text.text3')}</Text>
 
                                             <Divider appearance='brand' className={styles.dividerbottom} />
 
@@ -1038,13 +1101,13 @@ const PageSet = () => {
 
 
                 </div>
-                {ribbon && <div className={styles.pieces}>
+                {state.ribbon && <div className={styles.pieces}>
 
-                    <Text size={text500}>pieces here???</Text>
+                    <Text size={state.text500}>pieces here???</Text>
                 </div>
                 }
-                {!ribbon && <div className={styles.contacts}>
-                    <Text size={text500}>contacts here???</Text>
+                {!state.ribbon && <div className={styles.contacts}>
+                    <Text size={state.text500}>contacts here???</Text>
                 </div>}
             </div>
 
