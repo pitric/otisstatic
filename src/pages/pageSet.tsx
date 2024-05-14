@@ -1,4 +1,4 @@
-import { Dialog, DialogBody, DialogContent, DialogSurface, DialogTitle, DialogTrigger, FluentProvider, Textarea, makeStyles, Text, tokens, Switch, BrandVariants, createLightTheme, shorthands, Divider, Radio, RadioGroup, createDarkTheme, Tooltip, Input, Accordion, AccordionHeader, AccordionItem, AccordionPanel, Toast, ToastTitle, useToastController, Toaster } from '@fluentui/react-components';
+import { Dialog, DialogBody, DialogContent, DialogSurface, DialogTitle, DialogTrigger, FluentProvider, Textarea, makeStyles, Text, tokens, Switch, BrandVariants, createLightTheme, shorthands, Divider, Radio, RadioGroup, createDarkTheme, Tooltip, Input, Accordion, AccordionHeader, AccordionItem, AccordionPanel, Toast, ToastTitle, useToastController, Toaster, ToastBody, ProgressBar } from '@fluentui/react-components';
 import {
     SearchRegular,
     AddRegular,
@@ -129,7 +129,7 @@ const reducer: React.Reducer<AppState, Action> = (state, action) => {
         case ActionType.Theme:
             return { ...state, theme: action.payload };
         case ActionType.Ribbon:
-            return { ...state, ribbon: action.payload };
+            return { ...state, ribbon: action.payload, open: undefined };
         case ActionType.Language:
             return { ...state, language: action.payload };
         case ActionType.Open:
@@ -432,12 +432,12 @@ const PageSet = () => {
         checked={state.tooltips}
         onChange={() => dispatch({ type: ActionType.Tooltips, payload: !state.tooltips })}
         label={state.tooltips ? t('settings.label5') : t('settings.label6')} />;
-    const switchSearch = <Switch
+    const searcConcisePiece = <Switch
         className={styles.switch}
         checked={state.verbose}
         onChange={() => dispatch({ type: ActionType.Verbose, payload: !state.verbose })}
         label={state.verbose ? t('settings.label1') : t('settings.label2')} />;
-    const switchInsert = <Switch
+    const searchListPiece = <Switch
         className={styles.switch}
         checked={state.insert}
         onChange={() => dispatch({ type: ActionType.Insert, payload: !state.insert })}
@@ -461,16 +461,127 @@ const PageSet = () => {
         <DismissFilled className={styles.icon28} />
     </DialogTrigger>;
 
+
     const { dispatchToast } = useToastController('toaster');
     const notify = () =>
         dispatchToast(
             <Toast>
                 <ToastTitle>Options configured in Toaster</ToastTitle>
+                <ToastBody>
+                    {/* <Text>This may take a while</Text> */}
+                    <ProgressBar thickness='large' shape='square' />
+                </ToastBody>
             </Toast>,
             { intent: 'success' }
         );
 
 
+    const sendUpload = <DialogTrigger disableButtonEnhancement action='close'>
+        <ArrowUploadFilled className={styles.icon28} />
+    </DialogTrigger>;
+    const sendDismiss = <DialogTrigger disableButtonEnhancement action='close'>
+        <DismissFilled className={styles.icon28} />
+    </DialogTrigger>;
+    const addPieceUpload = <DialogTrigger disableButtonEnhancement action='close'>
+        <ArrowUploadFilled className={styles.icon28} />
+    </DialogTrigger>;
+    const addPieceDismiss = <DialogTrigger disableButtonEnhancement action='close'>
+        <DismissFilled className={styles.icon28} />
+    </DialogTrigger>;
+    const switchAddPiece = <Switch
+        className={styles.switch}
+        checked={state.access}
+        onChange={() => dispatch({ type: ActionType.Access, payload: !state.access })}
+        label={state.access ? t('add.label1') : t('add.label2')} />;
+    const nameAddPiece = <Input appearance='outline' className={styles.inputadd} />;
+    const descriptionAddPiece = <Textarea
+        appearance='outline'
+        size={state.area}
+        resize='vertical'
+        className={styles.textareaadd}
+        value={state.tagsPiece}
+        onChange={(_, data) => { dispatch({ type: ActionType.TagsPiece, payload: data.value }); }} />;
+    const searchPieceUpload = <DialogTrigger disableButtonEnhancement action='close'>
+        <ArrowUploadFilled className={styles.icon28} />
+    </DialogTrigger>;
+    const searchPieceDismiss = <DialogTrigger disableButtonEnhancement action='close'>
+        <DismissFilled className={styles.icon28} />
+    </DialogTrigger>;
+    const searchPieceCriteria = <Textarea
+        appearance='outline'
+        size={state.area}
+        resize='vertical'
+        className={styles.textarea}
+        value={state.criteriaPiece}
+        onChange={(_, data) => { dispatch({ type: ActionType.CriteriaPiece, payload: data.value }); }} />;
+    const searchOrderPiece = <RadioGroup value={state.orderPiece} onChange={(_: any, data: { value: React.SetStateAction<any>; }) => {
+        dispatch({ type: ActionType.OrderPiece, payload: data.value });
+    }} required>
+        <div className='styles.settings'>
+            <Radio value='newest' label={t('send.label3')} />
+            <Radio value='oldest' label={t('send.label4')} />
+        </div>
+        <div className='styles.settings'>
+            <Radio value='ascending' label={t('send.label1')} />
+            <Radio value='descending' label={t('send.label2')} />
+        </div>
+
+    </RadioGroup>;
+    const searchOrderContact = <RadioGroup value={state.orderContact} onChange={(_: any, data: { value: React.SetStateAction<any>; }) => {
+        dispatch({ type: ActionType.OrderContact, payload: data.value });
+    }} required>
+        <div className='styles.settings'>
+
+            <Radio value='newest' label={t('send.label3')} />
+            <Radio value='oldest' label={t('send.label4')} />
+        </div>
+        <div className='styles.settings'>
+
+            <Radio value='ascending' label={t('send.label1')} />
+            <Radio value='descending' label={t('send.label2')} />
+        </div>
+
+    </RadioGroup>;
+    const searchContactCriteria = <Textarea
+        appearance='outline'
+        size={state.area}
+        resize='vertical'
+        className={styles.textarea}
+        value={state.criteriaContact}
+        onChange={(_, data) => { dispatch({ type: ActionType.CriteriaContact, payload: data.value }); }} />;
+    const searchContactUpload = <DialogTrigger disableButtonEnhancement action='close'>
+        <ArrowUploadFilled className={styles.icon28} />
+    </DialogTrigger>;
+    const searchContactDismiss = <DialogTrigger disableButtonEnhancement action='close'>
+        <DismissFilled className={styles.icon28} />
+    </DialogTrigger>;
+    const addContactUpload = <DialogTrigger disableButtonEnhancement action='close'>
+        <ArrowUploadFilled className={styles.icon28} />
+    </DialogTrigger>;
+    const addContactDismiss = <DialogTrigger disableButtonEnhancement action='close'>
+        <DismissFilled className={styles.icon28} />
+    </DialogTrigger>;
+    const nameAddContact = <Input appearance='outline' className={styles.inputadd} />;
+    const descriptionAddContact = <Textarea
+        appearance='outline'
+        size={state.area}
+        resize='vertical'
+        className={styles.textareaadd}
+        value={state.tagsContact}
+        onChange={(_, data) => { dispatch({ type: ActionType.CriteriaContact, payload: data.value }); }} />;
+    const accountName = <Input appearance='outline' className={styles.inputadd} />;
+    const accountNameUpload = <DialogTrigger disableButtonEnhancement action='open'>
+        <ArrowUploadFilled className={styles.icon28} onClick={() => notify()} />
+    </DialogTrigger>;
+    const accountNameDismiss = <DialogTrigger disableButtonEnhancement action='close'>
+        <DismissFilled className={styles.icon28} />
+    </DialogTrigger>;
+    const ribbonSwap = <ArrowSwapRegular className={styles.icon24} onClick={() => { dispatch({ type: ActionType.Ribbon, payload: !state.ribbon }); }} />;
+    const ribbonSearch = <SearchRegular className={styles.icon24} />;
+    const ribbonAdd = <AddRegular className={styles.icon24} />;
+    const ribbonName = <RenameRegular className={styles.icon24} />;
+    const ribbonSend = <SendRegular className={styles.icon24} />;
+    const ribbonSettings = <SettingsRegular className={styles.icon24} />;
     return (
         <FluentProvider theme={state.theme ? lightTheme : darkTheme}>
             <div className={styles.page} >
@@ -478,13 +589,13 @@ const PageSet = () => {
                 <div className={styles.content} >
                     <div className={styles.ribbon}>
                         {state.tooltips ? <Tooltip
-                            content={t('tip.text1')}
+                            content={t('ribbon.tip1')}
                             relationship='description'
                             withArrow
                         >
-                            <ArrowSwapRegular className={styles.icon24} onClick={() => dispatch({ type: ActionType.Ribbon, payload: !state.ribbon })} />
+                            {ribbonSwap}
                         </Tooltip> :
-                            <ArrowSwapRegular className={styles.icon24} onClick={() => dispatch({ type: ActionType.Ribbon, payload: !state.ribbon })} />
+                            ribbonSwap
                         }
 
                         <Text font='base' weight='medium' size={state.text400}>{state.ribbon ? t('ribbon.label1') : t('ribbon.label2')}</Text>
@@ -499,7 +610,16 @@ const PageSet = () => {
                         <Dialog modalType='non-modal' open={state.open === 'searchpiece'} onOpenChange={(_, data) => dispatch({ type: ActionType.Open, payload: data.open ? 'searchpiece' : undefined })} >
 
                             <DialogTrigger disableButtonEnhancement >
-                                <SearchRegular className={styles.icon24} />
+                                {state.tooltips ? <Tooltip
+                                    content={t('ribbon.tip1')}
+                                    relationship='description'
+                                    withArrow
+                                >
+                                    {ribbonSearch}
+
+                                </Tooltip> :
+                                    ribbonSearch
+                                }
 
                             </DialogTrigger>
                             <DialogSurface className={styles.root2} >
@@ -508,53 +628,71 @@ const PageSet = () => {
                                     <DialogTitle className={styles.title}
                                         action={
                                             <>
-                                                <DialogTrigger disableButtonEnhancement action='close'>
-                                                    <ArrowUploadFilled className={styles.icon28} />
-                                                </DialogTrigger>
-
-                                                <DialogTrigger disableButtonEnhancement action='close'>
-                                                    <DismissFilled className={styles.icon28} />
-                                                </DialogTrigger>
+                                                {state.tooltips ? <Tooltip
+                                                    content={t('search.tip')}
+                                                    relationship='description'
+                                                    withArrow
+                                                >
+                                                    {searchPieceUpload}
+                                                </Tooltip> :
+                                                    searchPieceUpload}
+                                                {state.tooltips ? <Tooltip
+                                                    content={t('search.tip')}
+                                                    relationship='description'
+                                                    withArrow
+                                                >
+                                                    {searchPieceDismiss}
+                                                </Tooltip> :
+                                                    searchPieceDismiss}
                                             </>
                                         }
                                     >
                                         <Text size={state.text500}>{t('search.title1')}</Text>
                                     </DialogTitle>
                                     <DialogContent>
-                                        <Textarea
-                                            appearance='outline'
-                                            size={state.area}
-                                            resize='vertical'
-                                            className={styles.textarea}
-                                            value={state.criteriaPiece}
-                                            onChange={(_, data) => { dispatch({ type: ActionType.CriteriaPiece, payload: data.value }) }}
-                                        />
+                                        {state.tooltips ? <Tooltip
+                                            content={t('search.tip')}
+                                            relationship='description'
+                                            withArrow
+                                        >
+                                            {searchPieceCriteria}
+                                        </Tooltip> :
+                                            searchPieceCriteria
+                                        }
+
 
                                         <Text size={state.text200} className={styles.captiontextarea} >{t('search.caption1')}</Text>
-
-                                        <RadioGroup value={state.orderPiece} onChange={(_: any, data: { value: React.SetStateAction<any>; }) => {
-                                            dispatch({ type: ActionType.OrderPiece, payload: data.value })
-                                        }} required>
-
-                                            <div className='styles.settings'>
-
-                                                <Radio value='newest' label={t('send.label3')} />
-                                                <Radio value='oldest' label={t('send.label4')} />
-                                            </div>
-                                            <div className='styles.settings'>
-
-                                                <Radio value='ascending' label={t('send.label1')} />
-                                                <Radio value='descending' label={t('send.label2')} />
-                                            </div>
-
-                                        </RadioGroup>
-
-
+                                        {state.tooltips ? <Tooltip
+                                            content={t('search.tip')}
+                                            relationship='description'
+                                            withArrow
+                                        >
+                                            {searchOrderPiece}
+                                        </Tooltip> :
+                                            searchOrderPiece
+                                        }
 
                                         <div className='styles.settings'>
 
-                                            {switchSearch}
-                                            {switchInsert}
+                                            {state.tooltips ? <Tooltip
+                                                content={t('search.tip')}
+                                                relationship='description'
+                                                withArrow
+                                            >
+                                                {searcConcisePiece}
+                                            </Tooltip> :
+                                                searcConcisePiece
+                                            }
+                                            {state.tooltips ? <Tooltip
+                                                content={t('search.tip')}
+                                                relationship='description'
+                                                withArrow
+                                            >
+                                                {searchListPiece}
+                                            </Tooltip> :
+                                                searchListPiece
+                                            }
+
 
                                         </div>
                                         {state.instructions && <div className={styles.instructions}>
@@ -577,45 +715,84 @@ const PageSet = () => {
                         <Dialog modalType='non-modal' open={state.open === 'addpiece'} onOpenChange={(_, data) => dispatch({ type: ActionType.Open, payload: data.open ? 'addpiece' : undefined })} >
 
                             <DialogTrigger disableButtonEnhancement >
-                                <AddRegular className={styles.icon24} />
+                            {state.tooltips ? <Tooltip
+                                    content={t('ribbon.tip1')}
+                                    relationship='description'
+                                    withArrow
+                                >
+                                    {ribbonAdd}
+
+                                </Tooltip> :
+                                    ribbonAdd
+                                }
+                               
                             </DialogTrigger>
                             <DialogSurface className={styles.root2} >
                                 <DialogBody className={styles.root}>
                                     <DialogTitle className={styles.title}
                                         action={
                                             <>
-                                                <DialogTrigger disableButtonEnhancement action='close'>
-                                                    <ArrowUploadFilled className={styles.icon28} />
-                                                </DialogTrigger>
-
-                                                <DialogTrigger disableButtonEnhancement action='close'>
-                                                    <DismissFilled className={styles.icon28} />
-                                                </DialogTrigger>
+                                                {state.tooltips ? <Tooltip
+                                                    content={t('add.tip1')}
+                                                    relationship='description'
+                                                    withArrow
+                                                >
+                                                    {addPieceUpload}
+                                                </Tooltip> :
+                                                    addPieceUpload}
+                                                {state.tooltips ? <Tooltip
+                                                    content={t('add.tip2')}
+                                                    relationship='description'
+                                                    withArrow
+                                                >
+                                                    {addPieceDismiss}
+                                                </Tooltip> :
+                                                    addPieceDismiss}
                                             </>
                                         }
                                     >
                                         <Text size={state.text500}>{t('add.title1')}</Text>
                                     </DialogTitle>
                                     <DialogContent className={styles.dialog}>
-                                        <Input appearance='outline' className={styles.inputadd} />
+                                        {state.tooltips ? <Tooltip
+                                            content={t('add.tip4')}
+                                            relationship='description'
+                                            withArrow
+                                        >
+                                            {nameAddPiece}
+                                        </Tooltip> :
+                                            nameAddPiece
+                                        }
+
                                         <Text size={state.text200} className={styles.captioninput} >{t('add.caption3')}</Text>
-                                        <Textarea
-                                            appearance='outline'
-                                            size={state.area}
-                                            resize='vertical'
-                                            className={styles.textareaadd}
-                                            value={state.tagsPiece}
-                                            onChange={(_, data) => { dispatch({ type: ActionType.TagsPiece, payload: data.value }) }}
-                                        />
+
+                                        {state.tooltips ? <Tooltip
+                                            content={t('add.tip5')}
+                                            relationship='description'
+                                            withArrow
+                                        >
+                                            {descriptionAddPiece}
+
+                                        </Tooltip> :
+                                            descriptionAddPiece
+                                        }
+
 
                                         <Text size={state.text200} className={styles.captiontextarea} >{t('add.caption1')}</Text>
+                                        {state.tooltips ? <Tooltip
+                                            content={t('add.tip3')}
+                                            relationship='description'
+                                            withArrow
+                                        >
+                                            {switchAddPiece}
+                                        </Tooltip> :
+                                            <>
+                                                {switchAddPiece}
+                                            </>
+                                        }
 
-                                        <Switch
-                                            className={styles.switch}
-                                            checked={state.access}
-                                            onChange={() => dispatch({ type: ActionType.Access, payload: !state.access })}
-                                            label={state.access ? t('add.label1') : t('add.label2')}
-                                        />
+
+
 
                                         {state.instructions && <div className={styles.instructions}>
                                             <Divider appearance='brand' className={styles.dividertop} />
@@ -623,7 +800,6 @@ const PageSet = () => {
 
                                             <Text size={state.text300}>{t('add.text1')}</Text>
                                             <Text size={state.text300}>{t('add.text2')}</Text>
-                                            <Text size={state.text300}>{t('add.text3')}</Text>
 
                                             <Divider appearance='brand' className={styles.dividerbottom} />
 
@@ -639,20 +815,39 @@ const PageSet = () => {
                         <Dialog modalType='non-modal' open={state.open === 'sendpiece'} onOpenChange={(_, data) => dispatch({ type: ActionType.Open, payload: data.open ? 'sendpiece' : undefined })} >
 
                             <DialogTrigger disableButtonEnhancement >
-                                <SendRegular className={styles.icon24} />
+                            {state.tooltips ? <Tooltip
+                                    content={t('ribbon.tip1')}
+                                    relationship='description'
+                                    withArrow
+                                >
+                                  {ribbonSend}
+
+                                </Tooltip> :
+                                    ribbonSend
+                                }
+                                
                             </DialogTrigger>
                             <DialogSurface className={styles.root2} >
                                 <DialogBody className={styles.root}>
                                     <DialogTitle className={styles.title}
                                         action={
                                             <>
-                                                <DialogTrigger disableButtonEnhancement action='close'>
-                                                    <ArrowUploadFilled className={styles.icon28} />
-                                                </DialogTrigger>
-
-                                                <DialogTrigger disableButtonEnhancement action='close'>
-                                                    <DismissFilled className={styles.icon28} />
-                                                </DialogTrigger>
+                                                {state.tooltips ? <Tooltip
+                                                    content={t('send.tip1')}
+                                                    relationship='description'
+                                                    withArrow
+                                                >
+                                                    {sendUpload}
+                                                </Tooltip> :
+                                                    sendUpload}
+                                                {state.tooltips ? <Tooltip
+                                                    content={t('send.tip2')}
+                                                    relationship='description'
+                                                    withArrow
+                                                >
+                                                    {sendDismiss}
+                                                </Tooltip> :
+                                                    sendDismiss}
                                             </>
                                         }
                                     >
@@ -678,9 +873,9 @@ const PageSet = () => {
                                         </Accordion>
                                         {state.instructions && <div className={styles.instructions}>
                                             <Divider appearance='brand' className={styles.dividertop} />
-                                            <Text size={state.text300}>{t('settings.text1')}</Text>
-                                            <Text size={state.text300}>{t('settings.text2')}</Text>
-                                            <Text size={state.text300}>{t('settings.text3')}</Text>
+                                            <Text size={state.text300}>{t('send.text1')}</Text>
+                                            <Text size={state.text300}>{t('send.text2')}</Text>
+
                                             <Divider appearance='brand' className={styles.dividerbottom} />
                                         </div>
                                         }
@@ -691,14 +886,24 @@ const PageSet = () => {
                         {/* <Dialog modalType='non-modal' open={open === 'settings'} onOpenChange={(_, data) => setOpen(data.open ? 'settings' : undefined)} > */}
                         <Dialog modalType='non-modal' open={state.open === 'settings'} onOpenChange={(_, data) => dispatch({ type: ActionType.Open, payload: data.open ? 'settings' : undefined })} >
                             <DialogTrigger disableButtonEnhancement >
-                                <SettingsRegular className={styles.icon24} />
+                            {state.tooltips ? <Tooltip
+                                    content={t('ribbon.tip1')}
+                                    relationship='description'
+                                    withArrow
+                                >
+                                  {ribbonSettings}
+
+                                </Tooltip> :
+                                    ribbonSettings
+                                }
+                               
                             </DialogTrigger>
                             <DialogSurface className={styles.root2} >
                                 <DialogBody className={styles.root}>
                                     <DialogTitle className={styles.title}
                                         action={<>
                                             {state.tooltips ? <Tooltip
-                                                content={t('tip.text7')}
+                                                content={t('settings.tip7')}
                                                 relationship='description'
                                                 withArrow
                                             >
@@ -706,7 +911,7 @@ const PageSet = () => {
                                             </Tooltip> :
                                                 settingsUpload}
                                             {state.tooltips ? <Tooltip
-                                                content={t('tip.text8')}
+                                                content={t('settings.tip8')}
                                                 relationship='description'
                                                 withArrow
                                             >
@@ -724,7 +929,7 @@ const PageSet = () => {
                                     </DialogTitle>
                                     <DialogContent className={styles.dialog}>
                                         {state.tooltips ? <Tooltip
-                                            content={t('tip.text6')}
+                                            content={t('settings.tip6')}
                                             relationship='description'
                                             withArrow
                                         >
@@ -735,7 +940,7 @@ const PageSet = () => {
                                         <div className='styles.settings'>
 
                                             {state.tooltips ? <Tooltip
-                                                content={t('tip.text5')}
+                                                content={t('settings.tip5')}
                                                 relationship='description'
                                                 withArrow
                                             >
@@ -746,7 +951,7 @@ const PageSet = () => {
 
 
                                             {state.tooltips ? <Tooltip
-                                                content={t('tip.text4')}
+                                                content={t('settings.tip4')}
                                                 relationship='description'
                                                 withArrow
                                             >
@@ -761,7 +966,7 @@ const PageSet = () => {
                                         <div className='styles.settings'>
 
                                             {state.tooltips ? <Tooltip
-                                                content={t('tip.text3')}
+                                                content={t('settings.tip3')}
                                                 relationship='description'
                                                 withArrow
                                             >
@@ -772,7 +977,7 @@ const PageSet = () => {
 
 
                                             {state.tooltips ? <Tooltip
-                                                content={t('tip.text2')}
+                                                content={t('settings.tip2')}
                                                 relationship='description'
                                                 withArrow
                                             >
@@ -787,9 +992,9 @@ const PageSet = () => {
                                             <Divider appearance='brand' className={styles.dividertop} />
 
 
-                                            <Text size={state.text300}>{t('text.text1')}</Text>
-                                            <Text size={state.text300}>{t('text.text2')}</Text>
-                                            <Text size={state.text300}>{t('text.text3')}</Text>
+                                            <Text size={state.text300}>{t('settings.text1')}</Text>
+                                            <Text size={state.text300}>{t('settings.text2')}</Text>
+                                            <Text size={state.text300}>{t('settings.text3')}</Text>
 
                                             <Divider appearance='brand' className={styles.dividerbottom} />
 
@@ -811,7 +1016,16 @@ const PageSet = () => {
 
                         <Dialog modalType='non-modal' open={state.open === 'searchcontact'} onOpenChange={(_, data) => dispatch({ type: ActionType.Open, payload: data.open ? 'searchcontact' : undefined })} >
                             <DialogTrigger disableButtonEnhancement >
-                                <SearchRegular className={styles.icon24} />
+                            {state.tooltips ? <Tooltip
+                                    content={t('ribbon.tip1')}
+                                    relationship='description'
+                                    withArrow
+                                >
+                                    {ribbonSearch}
+
+                                </Tooltip> :
+                                    ribbonSearch
+                                }
 
                             </DialogTrigger>
                             <DialogSurface className={styles.root2} >
@@ -819,46 +1033,50 @@ const PageSet = () => {
 
                                     <DialogTitle className={styles.title}
                                         action={
-                                            <>
-                                                <DialogTrigger disableButtonEnhancement action='close'>
-                                                    <ArrowUploadFilled className={styles.icon28} />
-                                                </DialogTrigger>
-
-                                                <DialogTrigger disableButtonEnhancement action='close'>
-                                                    <DismissFilled className={styles.icon28} />
-                                                </DialogTrigger>
+                                            <> {state.tooltips ? <Tooltip
+                                                content={t('search.tip')}
+                                                relationship='description'
+                                                withArrow
+                                            >
+                                                {searchContactUpload}
+                                            </Tooltip> :
+                                                searchContactUpload}
+                                                {state.tooltips ? <Tooltip
+                                                    content={t('search.tip')}
+                                                    relationship='description'
+                                                    withArrow
+                                                >
+                                                    {searchContactDismiss}
+                                                </Tooltip> :
+                                                    searchContactDismiss}
                                             </>
                                         }
                                     >
                                         <Text size={state.text500}>{t('search.title1')}</Text>
                                     </DialogTitle>
                                     <DialogContent>
-                                        <Textarea
-                                            appearance='outline'
-                                            size={state.area}
-                                            resize='vertical'
-                                            className={styles.textarea}
-                                            value={state.criteriaContact}
-                                            onChange={(_, data) => { dispatch({ type: ActionType.CriteriaContact, payload: data.value }) }}
-                                        />
+                                        {state.tooltips ? <Tooltip
+                                            content={t('search.tip')}
+                                            relationship='description'
+                                            withArrow
+                                        >
+                                            {searchContactCriteria}
+                                        </Tooltip> :
+                                            searchContactCriteria
+                                        }
+
 
                                         <Text size={state.text200} className={styles.captiontextarea} >{t('search.caption2')}</Text>
+                                        {state.tooltips ? <Tooltip
+                                            content={t('search.tip')}
+                                            relationship='description'
+                                            withArrow
+                                        >
+                                            {searchOrderContact}
+                                        </Tooltip> :
+                                            searchOrderContact
+                                        }
 
-                                        <RadioGroup value={state.orderContact} onChange={(_: any, data: { value: React.SetStateAction<any>; }) => {
-                                            dispatch({ type: ActionType.OrderContact, payload: data.value })
-                                        }} required>
-                                            <div className='styles.settings'>
-
-                                                <Radio value='newest' label={t('send.label3')} />
-                                                <Radio value='oldest' label={t('send.label4')} />
-                                            </div>
-                                            <div className='styles.settings'>
-
-                                                <Radio value='ascending' label={t('send.label1')} />
-                                                <Radio value='descending' label={t('send.label2')} />
-                                            </div>
-
-                                        </RadioGroup>
 
                                         {state.instructions && <div className={styles.instructions}>
                                             <Divider appearance='brand' className={styles.dividertop} />
@@ -879,36 +1097,66 @@ const PageSet = () => {
                         {/* <Dialog modalType='non-modal' open={open === 'addcontact'} onOpenChange={(_, data) => setOpen(data.open ? 'addcontact' : undefined)} > */}
                         <Dialog modalType='non-modal' open={state.open === 'addcontact'} onOpenChange={(_, data) => dispatch({ type: ActionType.Open, payload: data.open ? 'addcontact' : undefined })} >
                             <DialogTrigger disableButtonEnhancement >
-                                <AddRegular className={styles.icon24} />
+                            {state.tooltips ? <Tooltip
+                                    content={t('ribbon.tip1')}
+                                    relationship='description'
+                                    withArrow
+                                >
+                                    {ribbonAdd}
+
+                                </Tooltip> :
+                                    ribbonAdd
+                                }
                             </DialogTrigger>
                             <DialogSurface className={styles.root2} >
                                 <DialogBody className={styles.root}>
                                     <DialogTitle className={styles.title}
                                         action={
                                             <>
-                                                <DialogTrigger disableButtonEnhancement action='close'>
-                                                    <ArrowUploadFilled className={styles.icon28} />
-                                                </DialogTrigger>
+                                                {state.tooltips ? <Tooltip
+                                                    content={t('search.tip')}
+                                                    relationship='description'
+                                                    withArrow
+                                                >
+                                                    {addContactUpload}
+                                                </Tooltip> :
+                                                    addContactUpload}
+                                                {state.tooltips ? <Tooltip
+                                                    content={t('search.tip')}
+                                                    relationship='description'
+                                                    withArrow
+                                                >
+                                                    {addContactDismiss}
+                                                </Tooltip> :
+                                                    addContactDismiss}
 
-                                                <DialogTrigger disableButtonEnhancement action='close'>
-                                                    <DismissFilled className={styles.icon28} />
-                                                </DialogTrigger>
                                             </>
                                         }
                                     >
                                         <Text size={state.text500}>{t('add.title1')}</Text>
                                     </DialogTitle>
                                     <DialogContent className={styles.dialog}>
-                                        <Input appearance='outline' className={styles.inputadd} />
+                                        {state.tooltips ? <Tooltip
+                                            content={t('search.tip')}
+                                            relationship='description'
+                                            withArrow
+                                        >
+                                            {nameAddContact}
+                                        </Tooltip> :
+                                            nameAddContact
+                                        }
+
                                         <Text size={state.text200} className={styles.captioninput} >{t('add.caption4')}</Text>
-                                        <Textarea
-                                            appearance='outline'
-                                            size={state.area}
-                                            resize='vertical'
-                                            className={styles.textareaadd}
-                                            value={state.tagsContact}
-                                            onChange={(_, data) => { dispatch({ type: ActionType.CriteriaContact, payload: data.value }) }}
-                                        />
+                                        {state.tooltips ? <Tooltip
+                                            content={t('search.tip')}
+                                            relationship='description'
+                                            withArrow
+                                        >
+                                            {descriptionAddContact}
+
+                                        </Tooltip> :
+                                            descriptionAddContact
+                                        }
 
                                         <Text size={state.text200} className={styles.captiontextarea} >{t('add.caption2')}</Text>
 
@@ -934,20 +1182,40 @@ const PageSet = () => {
                         <Dialog modalType='non-modal' open={state.open === 'renamecontact'} onOpenChange={(_, data) => dispatch({ type: ActionType.Open, payload: data.open ? 'renamecontact' : undefined })} >
 
                             <DialogTrigger disableButtonEnhancement >
-                                <RenameRegular className={styles.icon24} />
+                            {state.tooltips ? <Tooltip
+                                    content={t('ribbon.tip1')}
+                                    relationship='description'
+                                    withArrow
+                                >
+                                   {ribbonName}
+
+                                </Tooltip> :
+                                    ribbonName
+                                }
+                                
                             </DialogTrigger>
                             <DialogSurface className={styles.root2} >
                                 <DialogBody className={styles.root}>
                                     <DialogTitle className={styles.title}
                                         action={
                                             <>
-                                                <DialogTrigger disableButtonEnhancement action='open'>
-                                                    <ArrowUploadFilled className={styles.icon28} onClick={() => notify()} />
-                                                </DialogTrigger>
+                                                {state.tooltips ? <Tooltip
+                                                    content={t('search.tip')}
+                                                    relationship='description'
+                                                    withArrow
+                                                >
+                                                    {accountNameUpload}
+                                                </Tooltip> :
+                                                    accountNameUpload}
+                                                {state.tooltips ? <Tooltip
+                                                    content={t('search.tip')}
+                                                    relationship='description'
+                                                    withArrow
+                                                >
+                                                    {accountNameDismiss}
+                                                </Tooltip> :
+                                                    accountNameDismiss}
 
-                                                <DialogTrigger disableButtonEnhancement action='close'>
-                                                    <DismissFilled className={styles.icon28} />
-                                                </DialogTrigger>
                                             </>
                                         }
                                     >
@@ -967,7 +1235,17 @@ const PageSet = () => {
 
 
                                         <Text className={styles.name} size={state.text400}>Account: Buster</Text>
-                                        <Input appearance='outline' className={styles.inputadd} />
+                                        {state.tooltips ? <Tooltip
+                                            content={t('search.tip')}
+                                            relationship='description'
+                                            withArrow
+                                        >
+                                            {accountName}
+                                        </Tooltip> :
+                                            accountName
+                                        }
+
+
                                         <Text size={state.text200} className={styles.captioninput} >{t('name.caption1')}</Text>
                                         {state.instructions && <div className={styles.instructions}>
                                             <Divider appearance='brand' className={styles.dividertop} />
@@ -982,17 +1260,25 @@ const PageSet = () => {
                             </DialogSurface>
                         </Dialog>
 
-                        {/* <Dialog modalType='non-modal' open={open === 'settings'} onOpenChange={(_, data) => setOpen(data.open ? 'settings' : undefined)} > */}
                         <Dialog modalType='non-modal' open={state.open === 'settings'} onOpenChange={(_, data) => dispatch({ type: ActionType.Open, payload: data.open ? 'settings' : undefined })} >
                             <DialogTrigger disableButtonEnhancement >
-                                <SettingsRegular className={styles.icon24} />
+                            {state.tooltips ? <Tooltip
+                                    content={t('ribbon.tip1')}
+                                    relationship='description'
+                                    withArrow
+                                >
+                                  {ribbonSettings}
+
+                                </Tooltip> :
+                                    ribbonSettings
+                                }
                             </DialogTrigger>
                             <DialogSurface className={styles.root2} >
                                 <DialogBody className={styles.root}>
                                     <DialogTitle className={styles.title}
                                         action={<>
                                             {state.tooltips ? <Tooltip
-                                                content={t('tip.text7')}
+                                                content={t('settings.tip7')}
                                                 relationship='description'
                                                 withArrow
                                             >
@@ -1000,7 +1286,7 @@ const PageSet = () => {
                                             </Tooltip> :
                                                 settingsUpload}
                                             {state.tooltips ? <Tooltip
-                                                content={t('tip.text8')}
+                                                content={t('settings.tip8')}
                                                 relationship='description'
                                                 withArrow
                                             >
@@ -1018,7 +1304,7 @@ const PageSet = () => {
                                     </DialogTitle>
                                     <DialogContent className={styles.dialog}>
                                         {state.tooltips ? <Tooltip
-                                            content={t('tip.text6')}
+                                            content={t('settings.tip6')}
                                             relationship='description'
                                             withArrow
                                         >
@@ -1029,7 +1315,7 @@ const PageSet = () => {
                                         <div className='styles.settings'>
 
                                             {state.tooltips ? <Tooltip
-                                                content={t('tip.text5')}
+                                                content={t('settings.tip5')}
                                                 relationship='description'
                                                 withArrow
                                             >
@@ -1040,7 +1326,7 @@ const PageSet = () => {
 
 
                                             {state.tooltips ? <Tooltip
-                                                content={t('tip.text4')}
+                                                content={t('settings.tip4')}
                                                 relationship='description'
                                                 withArrow
                                             >
@@ -1055,7 +1341,7 @@ const PageSet = () => {
                                         <div className='styles.settings'>
 
                                             {state.tooltips ? <Tooltip
-                                                content={t('tip.text3')}
+                                                content={t('settings.tip3')}
                                                 relationship='description'
                                                 withArrow
                                             >
@@ -1066,7 +1352,7 @@ const PageSet = () => {
 
 
                                             {state.tooltips ? <Tooltip
-                                                content={t('tip.text2')}
+                                                content={t('settings.tip2')}
                                                 relationship='description'
                                                 withArrow
                                             >
@@ -1081,9 +1367,9 @@ const PageSet = () => {
                                             <Divider appearance='brand' className={styles.dividertop} />
 
 
-                                            <Text size={state.text300}>{t('text.text1')}</Text>
-                                            <Text size={state.text300}>{t('text.text2')}</Text>
-                                            <Text size={state.text300}>{t('text.text3')}</Text>
+                                            <Text size={state.text300}>{t('settings.text1')}</Text>
+                                            <Text size={state.text300}>{t('settings.text2')}</Text>
+                                            <Text size={state.text300}>{t('settings.text3')}</Text>
 
                                             <Divider appearance='brand' className={styles.dividerbottom} />
 

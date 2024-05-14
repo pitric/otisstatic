@@ -502,9 +502,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fluentui/react-combobox@npm:^9.11.2":
-  version: 9.11.2
-  resolution: "@fluentui/react-combobox@npm:9.11.2"
+"@fluentui/react-combobox@npm:^9.11.3":
+  version: 9.11.3
+  resolution: "@fluentui/react-combobox@npm:9.11.3"
   dependencies:
     "@fluentui/keyboard-keys": "npm:^9.0.7"
     "@fluentui/react-aria": "npm:^9.11.2"
@@ -525,13 +525,13 @@ __metadata:
     "@types/react-dom": ">=16.9.0 <19.0.0"
     react: ">=16.14.0 <19.0.0"
     react-dom: ">=16.14.0 <19.0.0"
-  checksum: 10c0/46f1d1971c2414af83b5fa9b4651419629687bdf4861e762c8f72c5d547ce9b44650b1d4b97f7f55990db2a43828acf83989a7268b022e08e8b3335e364f31c2
+  checksum: 10c0/7f55989e5fb842291a756e1f51e10f6ed9e03de41fdd1a5a4ddd56ca0ae9aa1f4e986fa682365fa8fce4151a1a3488c796fa80e93998f9441a2d8a4ef7f27a70
   languageName: node
   linkType: hard
 
-"@fluentui/react-components@npm:^9.50.0":
-  version: 9.50.0
-  resolution: "@fluentui/react-components@npm:9.50.0"
+"@fluentui/react-components@npm:^9.51.0":
+  version: 9.51.0
+  resolution: "@fluentui/react-components@npm:9.51.0"
   dependencies:
     "@fluentui/react-accordion": "npm:^9.3.53"
     "@fluentui/react-alert": "npm:9.0.0-beta.120"
@@ -542,10 +542,10 @@ __metadata:
     "@fluentui/react-button": "npm:^9.3.79"
     "@fluentui/react-card": "npm:^9.0.78"
     "@fluentui/react-checkbox": "npm:^9.2.24"
-    "@fluentui/react-combobox": "npm:^9.11.2"
+    "@fluentui/react-combobox": "npm:^9.11.3"
     "@fluentui/react-dialog": "npm:^9.10.4"
     "@fluentui/react-divider": "npm:^9.2.68"
-    "@fluentui/react-drawer": "npm:^9.2.2"
+    "@fluentui/react-drawer": "npm:^9.3.0"
     "@fluentui/react-field": "npm:^9.1.64"
     "@fluentui/react-image": "npm:^9.1.65"
     "@fluentui/react-infobutton": "npm:9.0.0-beta.102"
@@ -554,7 +554,7 @@ __metadata:
     "@fluentui/react-label": "npm:^9.1.69"
     "@fluentui/react-link": "npm:^9.2.21"
     "@fluentui/react-menu": "npm:^9.14.3"
-    "@fluentui/react-message-bar": "npm:^9.0.30"
+    "@fluentui/react-message-bar": "npm:^9.1.0"
     "@fluentui/react-overflow": "npm:^9.1.18"
     "@fluentui/react-persona": "npm:^9.2.84"
     "@fluentui/react-popover": "npm:^9.9.8"
@@ -575,7 +575,7 @@ __metadata:
     "@fluentui/react-table": "npm:^9.15.3"
     "@fluentui/react-tabs": "npm:^9.4.20"
     "@fluentui/react-tabster": "npm:^9.21.2"
-    "@fluentui/react-tag-picker": "npm:9.0.0"
+    "@fluentui/react-tag-picker": "npm:^9.0.1"
     "@fluentui/react-tags": "npm:^9.3.4"
     "@fluentui/react-teaching-popover": "npm:^9.1.3"
     "@fluentui/react-text": "npm:^9.4.17"
@@ -594,7 +594,7 @@ __metadata:
     "@types/react-dom": ">=16.9.0 <19.0.0"
     react: ">=16.14.0 <19.0.0"
     react-dom: ">=16.14.0 <19.0.0"
-  checksum: 10c0/ed4ede3e922994fc3581110a51f47e5e8899adf4e50b36e76536eaa06f9ca43bc59026ec516f3945b81dbe38372ce7fe91110e7b039fc0ac040712b2b3ea1802
+  checksum: 10c0/5f03bbf458c452ac81cee5eb33e41d79196690925dcf5642d55a2e998a2371e7d4843e2827aa648f4c29a574b763aa39fa77a3265850f4b6da1b37b66d37ded8
   languageName: node
   linkType: hard
 
@@ -659,9 +659,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fluentui/react-drawer@npm:^9.2.2":
-  version: 9.2.2
-  resolution: "@fluentui/react-drawer@npm:9.2.2"
+"@fluentui/react-drawer@npm:^9.3.0":
+  version: 9.3.0
+  resolution: "@fluentui/react-drawer@npm:9.3.0"
   dependencies:
     "@fluentui/react-dialog": "npm:^9.10.4"
     "@fluentui/react-jsx-runtime": "npm:^9.0.37"
@@ -677,7 +677,7 @@ __metadata:
     "@types/react-dom": ">=16.9.0 <19.0.0"
     react: ">=16.14.0 <19.0.0"
     react-dom: ">=16.14.0 <19.0.0"
-  checksum: 10c0/0337e0d99818a202d0f6e8a0a188901b9b2f93f2a21e973e15b539faeb0d5991676b2c6e8bf8a073b1472487aab577e4710aaca57422f2e75612454013a974d5
+  checksum: 10c0/d69b48c0af6d0e6ba358f9572910394e810367c44c6d13af9daa3e3bab3afabd5eac79bb12ac941d917b3a461493a98b4e6ba98726b264a3577f4af7a793db9c
   languageName: node
   linkType: hard
 
@@ -910,9 +910,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fluentui/react-message-bar@npm:^9.0.30":
-  version: 9.0.30
-  resolution: "@fluentui/react-message-bar@npm:9.0.30"
+"@fluentui/react-message-bar@npm:^9.1.0":
+  version: 9.1.0
+  resolution: "@fluentui/react-message-bar@npm:9.1.0"
   dependencies:
     "@fluentui/react-button": "npm:^9.3.79"
     "@fluentui/react-icons": "npm:^2.0.237"
@@ -928,7 +928,7 @@ __metadata:
     "@types/react-dom": ">=16.8.0 <19.0.0"
     react: ">=16.8.0 <19.0.0"
     react-dom: ">=16.8.0 <19.0.0"
-  checksum: 10c0/e1018d8a2f837b5a534c2ea95e3a27a4fbdc0f579b69cf8fc2663319e7f21b1fa9b395c432daf62b4d0114e8a09b61b116b3f5f9c0e4803451e2968b3c7e3c16
+  checksum: 10c0/aa9b6b733d6a9ddbafd2ea2f7aca3eae63a63411bb771b7629f87f4d3cbad2f7ce56fd07e8e1fd8d90476047e44160965ec562b2f70a634e83208432641f88f3
   languageName: node
   linkType: hard
 
@@ -1464,13 +1464,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fluentui/react-tag-picker@npm:9.0.0":
-  version: 9.0.0
-  resolution: "@fluentui/react-tag-picker@npm:9.0.0"
+"@fluentui/react-tag-picker@npm:^9.0.1":
+  version: 9.0.1
+  resolution: "@fluentui/react-tag-picker@npm:9.0.1"
   dependencies:
     "@fluentui/keyboard-keys": "npm:^9.0.7"
     "@fluentui/react-aria": "npm:^9.11.2"
-    "@fluentui/react-combobox": "npm:^9.11.2"
+    "@fluentui/react-combobox": "npm:^9.11.3"
     "@fluentui/react-context-selector": "npm:^9.1.59"
     "@fluentui/react-field": "npm:^9.1.64"
     "@fluentui/react-icons": "npm:^2.0.237"
@@ -1489,7 +1489,7 @@ __metadata:
     "@types/react-dom": ">=16.9.0 <19.0.0"
     react: ">=16.14.0 <19.0.0"
     react-dom: ">=16.14.0 <19.0.0"
-  checksum: 10c0/8b771401c121b3a18c9ced4e58e6732aa1cca86a337b6c402d7cdd5cbaa27cbcc023d9247cd455004c9e2a69ecbe86badf9054c98691d95ad323689a397f11c8
+  checksum: 10c0/6e8ce2d03200ed4d53ae283a7f9e22739d6a26ce7495310bfec7b68e95042305e8660205c4866bb45fe462222d5b186011272ad616f4cb13cdfec5cfce2096e1
   languageName: node
   linkType: hard
 
@@ -2144,13 +2144,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/json-schema@npm:^7.0.15":
-  version: 7.0.15
-  resolution: "@types/json-schema@npm:7.0.15"
-  checksum: 10c0/a996a745e6c5d60292f36731dd41341339d4eeed8180bb09226e5c8d23759067692b1d88e5d91d72ee83dfc00d3aca8e7bd43ea120516c17922cbcb7c3e252db
-  languageName: node
-  linkType: hard
-
 "@types/office-js@npm:^1.0.387":
   version: 1.0.387
   resolution: "@types/office-js@npm:1.0.387"
@@ -2210,27 +2203,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/semver@npm:^7.5.8":
-  version: 7.5.8
-  resolution: "@types/semver@npm:7.5.8"
-  checksum: 10c0/8663ff927234d1c5fcc04b33062cb2b9fcfbe0f5f351ed26c4d1e1581657deebd506b41ff7fdf89e787e3d33ce05854bc01686379b89e9c49b564c4cfa988efa
-  languageName: node
-  linkType: hard
-
-"@typescript-eslint/eslint-plugin@npm:^7.8.0":
-  version: 7.8.0
-  resolution: "@typescript-eslint/eslint-plugin@npm:7.8.0"
+"@typescript-eslint/eslint-plugin@npm:^7.9.0":
+  version: 7.9.0
+  resolution: "@typescript-eslint/eslint-plugin@npm:7.9.0"
   dependencies:
     "@eslint-community/regexpp": "npm:^4.10.0"
-    "@typescript-eslint/scope-manager": "npm:7.8.0"
-    "@typescript-eslint/type-utils": "npm:7.8.0"
-    "@typescript-eslint/utils": "npm:7.8.0"
-    "@typescript-eslint/visitor-keys": "npm:7.8.0"
-    debug: "npm:^4.3.4"
+    "@typescript-eslint/scope-manager": "npm:7.9.0"
+    "@typescript-eslint/type-utils": "npm:7.9.0"
+    "@typescript-eslint/utils": "npm:7.9.0"
+    "@typescript-eslint/visitor-keys": "npm:7.9.0"
     graphemer: "npm:^1.4.0"
     ignore: "npm:^5.3.1"
     natural-compare: "npm:^1.4.0"
-    semver: "npm:^7.6.0"
     ts-api-utils: "npm:^1.3.0"
   peerDependencies:
     "@typescript-eslint/parser": ^7.0.0
@@ -2238,44 +2222,44 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/37ca22620d1834ff0baa28fa4b8fd92039a3903cb95748353de32d56bae2a81ce50d1bbaed27487eebc884e0a0f9387fcb0f1647593e4e6df5111ef674afa9f0
+  checksum: 10c0/5c0ded9cb2210c141d236075f01a86447bf497a5061773c3c64a90756264776b4c4df100f7588e36d34f727eca55afd52fe6696a3cbe2d1f131250934254603a
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:^7.8.0":
-  version: 7.8.0
-  resolution: "@typescript-eslint/parser@npm:7.8.0"
+"@typescript-eslint/parser@npm:^7.9.0":
+  version: 7.9.0
+  resolution: "@typescript-eslint/parser@npm:7.9.0"
   dependencies:
-    "@typescript-eslint/scope-manager": "npm:7.8.0"
-    "@typescript-eslint/types": "npm:7.8.0"
-    "@typescript-eslint/typescript-estree": "npm:7.8.0"
-    "@typescript-eslint/visitor-keys": "npm:7.8.0"
+    "@typescript-eslint/scope-manager": "npm:7.9.0"
+    "@typescript-eslint/types": "npm:7.9.0"
+    "@typescript-eslint/typescript-estree": "npm:7.9.0"
+    "@typescript-eslint/visitor-keys": "npm:7.9.0"
     debug: "npm:^4.3.4"
   peerDependencies:
     eslint: ^8.56.0
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/0dd994c1b31b810c25e1b755b8d352debb7bf21a31f9a91acaec34acf4e471320bcceaa67cf64c110c0b8f5fac10a037dbabac6ec423e17adf037e59a7bce9c1
+  checksum: 10c0/16ca04645429436d9b7986cddda979ef4d088f4223f4a69e04a369e0fd4852dd5ff3d4b99da2e43cddaa2b421b24ff42f275d87bd110ae2356bdd0e81c2534e7
   languageName: node
   linkType: hard
 
-"@typescript-eslint/scope-manager@npm:7.8.0":
-  version: 7.8.0
-  resolution: "@typescript-eslint/scope-manager@npm:7.8.0"
+"@typescript-eslint/scope-manager@npm:7.9.0":
+  version: 7.9.0
+  resolution: "@typescript-eslint/scope-manager@npm:7.9.0"
   dependencies:
-    "@typescript-eslint/types": "npm:7.8.0"
-    "@typescript-eslint/visitor-keys": "npm:7.8.0"
-  checksum: 10c0/c253b98e96d4bf0375f473ca2c4d081726f1fd926cdfa65ee14c9ee99cca8eddb763b2d238ac365daa7246bef21b0af38180d04e56e9df7443c0e6f8474d097c
+    "@typescript-eslint/types": "npm:7.9.0"
+    "@typescript-eslint/visitor-keys": "npm:7.9.0"
+  checksum: 10c0/1ba6fc559a42a9b54e38c3ac2b6669efcff1a30292fb4e5fc8739c890a6c0f37d1a6aee1d115198f57c88e4f1776e95c1d7143de5cb5b970d5eb3023e97789dd
   languageName: node
   linkType: hard
 
-"@typescript-eslint/type-utils@npm:7.8.0":
-  version: 7.8.0
-  resolution: "@typescript-eslint/type-utils@npm:7.8.0"
+"@typescript-eslint/type-utils@npm:7.9.0":
+  version: 7.9.0
+  resolution: "@typescript-eslint/type-utils@npm:7.9.0"
   dependencies:
-    "@typescript-eslint/typescript-estree": "npm:7.8.0"
-    "@typescript-eslint/utils": "npm:7.8.0"
+    "@typescript-eslint/typescript-estree": "npm:7.9.0"
+    "@typescript-eslint/utils": "npm:7.9.0"
     debug: "npm:^4.3.4"
     ts-api-utils: "npm:^1.3.0"
   peerDependencies:
@@ -2283,23 +2267,23 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/00f6315626b64f7dbc1f7fba6f365321bb8d34141ed77545b2a07970e59a81dbdf768c1e024225ea00953750d74409ddd8a16782fc4a39261e507c04192dacab
+  checksum: 10c0/775280fb179268f8bacd60e684d9d5a1c6a379646b082c7244bf2dfb7dd693053bd9efa473b71e10a86db69322b0a2cecf5598d019684930df50000bf3d70af0
   languageName: node
   linkType: hard
 
-"@typescript-eslint/types@npm:7.8.0":
-  version: 7.8.0
-  resolution: "@typescript-eslint/types@npm:7.8.0"
-  checksum: 10c0/b2fdbfc21957bfa46f7d8809b607ad8c8b67c51821d899064d09392edc12f28b2318a044f0cd5d523d782e84e8f0558778877944964cf38e139f88790cf9d466
+"@typescript-eslint/types@npm:7.9.0":
+  version: 7.9.0
+  resolution: "@typescript-eslint/types@npm:7.9.0"
+  checksum: 10c0/d5f4a547dba4865ee2391bf06f2b3f8e8592a561976d2be35bb61ce340c7d1b7b4b25ac6ab5b9941813b465b9420bebb7b2179b1d71f6a83069feeb000b3558d
   languageName: node
   linkType: hard
 
-"@typescript-eslint/typescript-estree@npm:7.8.0":
-  version: 7.8.0
-  resolution: "@typescript-eslint/typescript-estree@npm:7.8.0"
+"@typescript-eslint/typescript-estree@npm:7.9.0":
+  version: 7.9.0
+  resolution: "@typescript-eslint/typescript-estree@npm:7.9.0"
   dependencies:
-    "@typescript-eslint/types": "npm:7.8.0"
-    "@typescript-eslint/visitor-keys": "npm:7.8.0"
+    "@typescript-eslint/types": "npm:7.9.0"
+    "@typescript-eslint/visitor-keys": "npm:7.9.0"
     debug: "npm:^4.3.4"
     globby: "npm:^11.1.0"
     is-glob: "npm:^4.0.3"
@@ -2309,34 +2293,31 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/1690b62679685073dcb0f62499f0b52b445b37ae6e12d02aa4acbafe3fb023cf999b01f714b6282e88f84fd934fe3e2eefb21a64455d19c348d22bbc68ca8e47
+  checksum: 10c0/cfc3d2b7a5433c9a2989c7289bc72b49786993782801ad8ca5a07c651df457a67fbce13b120c86c34c03d56570a90e5cf4f3b8806349f103a3658f2366ec28ea
   languageName: node
   linkType: hard
 
-"@typescript-eslint/utils@npm:7.8.0":
-  version: 7.8.0
-  resolution: "@typescript-eslint/utils@npm:7.8.0"
+"@typescript-eslint/utils@npm:7.9.0":
+  version: 7.9.0
+  resolution: "@typescript-eslint/utils@npm:7.9.0"
   dependencies:
     "@eslint-community/eslint-utils": "npm:^4.4.0"
-    "@types/json-schema": "npm:^7.0.15"
-    "@types/semver": "npm:^7.5.8"
-    "@typescript-eslint/scope-manager": "npm:7.8.0"
-    "@typescript-eslint/types": "npm:7.8.0"
-    "@typescript-eslint/typescript-estree": "npm:7.8.0"
-    semver: "npm:^7.6.0"
+    "@typescript-eslint/scope-manager": "npm:7.9.0"
+    "@typescript-eslint/types": "npm:7.9.0"
+    "@typescript-eslint/typescript-estree": "npm:7.9.0"
   peerDependencies:
     eslint: ^8.56.0
-  checksum: 10c0/31fb58388d15b082eb7bd5bce889cc11617aa1131dfc6950471541b3df64c82d1c052e2cccc230ca4ae80456d4f63a3e5dccb79899a8f3211ce36c089b7d7640
+  checksum: 10c0/cb99d6a950e7da0319bc7b923a82c52c0798a14e837afee51b2295cfbde02e0a2ac8e0b5904cd7bd01d1b376c7a6ad3739101b486feaf2517c8640024deb88c7
   languageName: node
   linkType: hard
 
-"@typescript-eslint/visitor-keys@npm:7.8.0":
-  version: 7.8.0
-  resolution: "@typescript-eslint/visitor-keys@npm:7.8.0"
+"@typescript-eslint/visitor-keys@npm:7.9.0":
+  version: 7.9.0
+  resolution: "@typescript-eslint/visitor-keys@npm:7.9.0"
   dependencies:
-    "@typescript-eslint/types": "npm:7.8.0"
+    "@typescript-eslint/types": "npm:7.9.0"
     eslint-visitor-keys: "npm:^3.4.3"
-  checksum: 10c0/5892fb5d9c58efaf89adb225f7dbbb77f9363961f2ff420b6b130bdd102dddd7aa8a16c46a5a71c19889d27b781e966119a89270555ea2cb5653a04d8994123d
+  checksum: 10c0/19181d8b9d2d7bc43d5c8884661cd9a86ac316392b8e590187cc507442093a1ba2bef0cc22181b8298d5dc9f455abb73cffa4663451bdf32b1b7fe12160c5c99
   languageName: node
   linkType: hard
 
@@ -3687,14 +3668,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "otisstatic@workspace:."
   dependencies:
-    "@fluentui/react-components": "npm:^9.50.0"
+    "@fluentui/react-components": "npm:^9.51.0"
     "@types/office-js": "npm:^1.0.387"
     "@types/office-runtime": "npm:^1.0.35"
     "@types/react": "npm:^18.3.2"
     "@types/react-dom": "npm:^18.3.0"
     "@types/react-i18next": "npm:^8.1.0"
-    "@typescript-eslint/eslint-plugin": "npm:^7.8.0"
-    "@typescript-eslint/parser": "npm:^7.8.0"
+    "@typescript-eslint/eslint-plugin": "npm:^7.9.0"
+    "@typescript-eslint/parser": "npm:^7.9.0"
     "@vitejs/plugin-basic-ssl": "npm:^1.1.0"
     "@vitejs/plugin-react-swc": "npm:^3.6.0"
     axios: "npm:^1.6.8"

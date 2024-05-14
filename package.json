@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@fluentui/react-components": "^9.50.0",
+    "@fluentui/react-components": "^9.51.0",
     "@types/office-js": "^1.0.387",
     "@types/office-runtime": "^1.0.35",
     "@types/react-i18next": "^8.1.0",
@@ -24,8 +24,8 @@
   "devDependencies": {
     "@types/react": "^18.3.2",
     "@types/react-dom": "^18.3.0",
-    "@typescript-eslint/eslint-plugin": "^7.8.0",
-    "@typescript-eslint/parser": "^7.8.0",
+    "@typescript-eslint/eslint-plugin": "^7.9.0",
+    "@typescript-eslint/parser": "^7.9.0",
     "@vitejs/plugin-react-swc": "^3.6.0",
     "eslint": "^9.2.0",
     "eslint-plugin-react-hooks": "^4.6.2",

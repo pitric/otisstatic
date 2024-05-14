@@ -7,26 +7,35 @@
     "text2": "You can then select the piece you want, and Pitric AI will insert the piece in the document at the location of the cursor, or you can delete it. If Pitric AI does not list the piece you are looking for, modify the search criteria.",
     "text3": "You can also close the dialog box by selecting the dismiss icon. When you do this, Pitric AI will not search for any pieces.",
     "text4": "",
-    "text5": ""
+    "text5": "",
+    "tip":"A PLACEHOLDER TEXT FOR SEARCH... "
   },
   "add": {
     "title1": "Add",
-    "caption1": "Piece Tags",
-    "caption2": "Contact Tags",
+    "caption1": "Piece Description",
+    "caption2": "Contact Description",
     "caption3": "Piece Name",
     "caption4": "Contact Name",
     "label1": "Private",
     "label2": "Public",
-    "text1": "To add a piece, simply select the part of the document that will become the piece and then select the upload icon. You can make the piece private—where only you can access it—or public—where the entire organization can access it.",
-    "text2": "To search for the piece later, you can add tags. Pitric AI does not require tags, but tags will narrow the top matches when you search. You separate tags with |. If your piece is a table related to a project named Project Buster, the tags: Project Buster | table will help in finding it.",
-    "text3": "You can also close the dialog box by selecting the dismiss icon. When you do this, Pitric AI will not add the piece."
+    "text1": "To add a piece, simply select the part of the document that will become the piece and add a name and an optional description. Then select the upload icon. You can make the piece private—where only you can access it—or public—where the entire organization can access it.",
+    "text2": "You can also close the dialog box by selecting the dismiss icon. When you do this, Pitric AI will not add the piece.",
+    "tip1": "The upload icon adds the piece to the cloud and closes the dialog box.",
+    "tip2": "The dismiss icon closes the dialog box and does not add the piece to the cloud.",
+    "tip3": "The private switch toggles between private and public pieces.",
+    "tip4": "The piece name is required and is between three and thirty characters.",
+    "tip5": "The piece description is optional and cannot exceed 230 characters."
   },
   "send": {
     "title1": "Send",
     "label1": "Ascending",
     "label2": "Descending",
     "label3": "Newest",
-    "label4": "Oldest"
+    "label4": "Oldest",
+    "text1": "To send pieces to your contacts, simply select the pieces you want to send and the contacts that will receive them. Then select the upload icon to send the pieces.",
+    "text2": "You can also close the dialog box by selecting the dismiss icon. When you do this, Pitric Pieces will not send any pieces.",
+    "tip1": "The upload icon sends the selected pieces to the selected contacts and closes the dialog box.",
+    "tip2": "The dismiss icon closes the dialog box and does not send any pieces."
   },
   "name": {
     "title1": "Name",
@@ -44,9 +53,17 @@
     "label6": "No Tooltips",
     "label7": "List",
     "label8": "Insert",
-    "text1": "To change the settings, simply slide the verbose or instructions switch and then select the upload icon to set them as your defaults. You can make the search results verbose—where Pitric AI shows more detailed search results—or concise—where it shows fewer details. You can also show or hide the instructions.",
-    "text2": "You can also close the dialog box by selecting the dismiss icon. When you do this, Pitric AI will not set them as your defaults.",
-    "text3": "For more information, go to pitric.com. If you have any questions, contact Pitric at pieces@pitric.com."
+    "text1": "To change the settings simply modify the settings and then select the upload icon to set your settings. Your new settings will become your default settings and the next time you open Pitric Pieces, they will be set.",
+    "text2": "In settings, you can change the size of the font, set the theme and the language. You can set whether instructions and tooltips are displayed. Note: To set a Hight Contrast Theme, set the accessibility option in your device.",
+    "text3": "You can also close the dialog box by selecting the dismiss icon. When you do this, Pitric Pieces will not save your settings as defaults.",
+    "tip1": "---",
+    "tip2": "The language switch toggles between English and Spanish.",
+    "tip3": "The instructions switch toggles between instructions and no instructions.",
+    "tip4": "The theme switch toggles between light and dark themes. To set a high contrast theme, set the accessibility option in your device.",
+    "tip5": "The tooltips switch toggles between tooltips and no tooltips.",
+    "tip6": "The text radio buttons set the size of the text: small, medium, or large.",
+    "tip7": "The upload icon sets your new settings as your defaults and closes the dialog box.",
+    "tip8": "The dismiss icon closes the dialog box and does not set your new settings as your defaults."
   },
   "text": {
     "title1": "Text",
@@ -77,7 +94,8 @@
 
   "ribbon": {
     "label1": "Pieces",
-    "label2": "Contacts"
+    "label2": "Contacts",
+    "tip1": "The swap icon toggles the ribbon contents between Pieces and Contacts."
   },
 
   "tip": {
